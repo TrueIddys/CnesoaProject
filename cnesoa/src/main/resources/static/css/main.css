@@ -1,0 +1,33 @@
+.bg-inverse {
+    color: #eceeef;
+    background-color: #373a3c;
+}
+
+.navbar {
+    position: fixed;
+    padding: .5rem 1rem;
+    color: #ffffff;
+}
+
+.navbar-brand{
+    color: #ffffff;
+}
+
+.nav>li>a {
+    color: #ffffff;
+}
+
+
+a:hover{
+    color: lightgrey !important;
+}
+
+.nav>li>a:hover{
+    background-color: transparent;
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding-top: 70px;
+    background-color: #fff;
+}

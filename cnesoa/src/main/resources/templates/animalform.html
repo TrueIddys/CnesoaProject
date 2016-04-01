@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com" xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <title>Ajout d'un animal</title>
+    <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+
+    <h2>Détails de l'animal</h2>
+    <div class="row">
+        <form class="form-horizontal" th:object="${animal}" th:action="@{'/client/'+${client.id}+'/animal'}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{client}"/>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Nom :</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{nom}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Date de naissance</label>
+                <div class="col-sm-10">
+                    <input type="text" pattern="MM/dd/yyyy" class="form-control" th:field="*{dateNaissance}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Race :</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{race}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Type :</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{type}"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Robe :</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{robe}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Sexe :</label>
+                <div class="col-sm-10">
+                    <div class="radio">
+                        <label><input type="radio" value="male" th:field="*{sexe}"/>Male </label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" value="femelle" th:field="*{sexe}"/>Femelle </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Médical :</label>
+                <div class="col-sm-10">
+                    <div class="radio">
+                        <label><input type="checkbox" th:field="*{vaccinMaj}"/> Vaccin à jour </label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="checkbox" th:field="*{sterilise}"/> Stérilisé </label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="checkbox" th:field="*{vermifuge}"/> Vermifugé </label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="checkbox" th:field="*{marechal}"/> Maréchal </label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="checkbox" th:field="*{dentiste}"/> Dentiste </label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Origine :</label>
+                <div class="col-sm-10">
+                    <div class="radio">
+                        <label><input type="radio" value="adopté SPA" th:field="*{origine}"/>adopté SPA </label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" value="trouvé" th:field="*{origine}"/>trouvé </label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" value="donné" th:field="*{origine}"/>donné </label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" value="animalerie" th:field="*{origine}"/>animalerie </label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" value="acheté élevage" th:field="*{origine}"/>acheté élevage </label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-default">Valider</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Animals</title>
+    <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+
+    <h2>Détail de l'animal</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <th> </th>
+                    <th> </th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><a th:href="@{'/animal/' + ${animal.id}+'/edit/' + ${animal.client.id}}">Modifier</a> </td>
+
+                    </tr>
+                    <tr>
+                        <td><label>Nom :</label></td>
+                        <td><p class="form-control-static" th:text="${animal.nom}">Nom</p></td>
+                    </tr>
+                    <tr>
+                        <td><label>Race :</label></td>
+                        <td><p class="form-control-static" th:text="${animal.race}">Race</p></td>
+                    </tr>
+                    <tr>
+                        <td><label>Type :</label></td>
+                        <td><p class="form-control-static" th:text="${animal.type}">Type</p></td>
+                    </tr>
+                    <tr>
+                        <td><label>Robe :</label></td>
+                        <td><p class="form-control-static" th:text="${animal.robe}">Robe</p></td>
+                    </tr>
+                    <tr>
+                        <td><label>Sexe :</label></td>
+                        <td><p class="form-control-static" th:text="${animal.sexe}">Sexe</p></td>
+                    </tr>
+                    <tr>
+                        <td><label>Propriétaire :</label></td>
+                        <td><p><a th:text="${animal.client}" th:href="@{'/client/' + ${animal.client.id}}"> Propriétaire</a></p></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <th> </th>
+                    <th> </th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><label>Vaccin :</label></td>
+                        <td><input type="checkbox" th:field="*{animal.vaccinMaj}" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>Stérilisé :</label></td>
+                        <td><input type="checkbox" th:field="*{animal.sterilise}" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>Vermifugé :</label></td>
+                        <td><input type="checkbox" th:field="*{animal.vermifuge}" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>Maréchal :</label></td>
+                        <td><input type="checkbox" th:field="*{animal.marechal}" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>Dentiste :</label></td>
+                        <td><input type="checkbox" th:field="*{animal.dentiste}" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>Origine :</label></td>
+                        <td><p class="form-control-static" th:text="${animal.origine}">Origine</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
