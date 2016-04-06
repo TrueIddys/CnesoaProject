@@ -10,69 +10,17 @@ import java.util.Set;
  */
 
 @Entity
-public class Client implements Serializable {
+public class Client extends Person implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column
-    private String prenom;
-
-    @Column
-    private String nom;
-
-    @Column
-    private String mail;
-
-    @Column
     private String rue;
 
-    @Column
     private String ville;
 
     @OneToOne
     private Cotisation cotisation;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Animal> animaux = new HashSet<>();
-
-    public String getNom()
-    {
-        return nom;
-    }
-
-    public void setNom(String nom)
-    {
-        this.nom = nom;
-    }
-
-    public String getPrenom(){
-        return prenom;
-    }
-
-    public void setPrenom(String prenom){
-        this.prenom = prenom;
-    }
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
-
-    public String getMail()
-    {
-        return this.mail;
-    }
-
-    public void setMail(String mail){
-        this.mail = mail;
-    }
 
     public String getRue(){
         return rue;
@@ -116,7 +64,19 @@ public class Client implements Serializable {
         this.animaux.add(animal);
     }
 
+    public void removeAnimal(Animal animal){
+        this.animaux.remove(animal);
+    }
+
     public  String toString(){
-        return prenom + " " + nom;
+        return getPrenom() + " " + getNom();
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        int d = getNom().compareTo(o.getNom());
+        if (d == 0)
+            d = getPrenom().compareTo(o.getPrenom());
+        return d;
     }
 }

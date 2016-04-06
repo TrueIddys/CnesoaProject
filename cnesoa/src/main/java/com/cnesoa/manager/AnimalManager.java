@@ -15,5 +15,5 @@ public interface AnimalManager {
 
     void deleteAnimal(Long id);
 
-    Animal addAnimal(Long clientId, Animal animal);
+    Animal addAnimal(Animal animal);
 }

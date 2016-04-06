@@ -1,10 +1,10 @@
 package com.cnesoa.manager.impl;
 
 import com.cnesoa.domain.Animal;
-import com.cnesoa.domain.Client;
+import com.cnesoa.domain.FicheMedicale;
 import com.cnesoa.manager.AnimalManager;
+import com.cnesoa.manager.ClientManager;
 import com.cnesoa.repository.AnimalRepository;
-import com.cnesoa.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,10 @@ public class AnimalManagerImpl implements AnimalManager {
 
     private AnimalRepository animalRepository;
 
-    private ClientRepository clientRepository;
+    private ClientManager clientManager;
+
+
+
 
     @Autowired
     public void setAnimalRepository(AnimalRepository animalRepository){
@@ -24,10 +27,9 @@ public class AnimalManagerImpl implements AnimalManager {
     }
 
     @Autowired
-    public void setClientRepository(ClientRepository clientRepository){
-        this.clientRepository = clientRepository;
+    public void setClientManager(ClientManager clientManager){
+        this.clientManager = clientManager;
     }
-
 
     @Override
     public Iterable<Animal> listAllAnimal() {
@@ -46,19 +48,17 @@ public class AnimalManagerImpl implements AnimalManager {
 
     @Override
     public void deleteAnimal(Long id) {
+        Animal animal = animalRepository.findOne(id);
+        clientManager.getClientById(animal.getClient().getId()).removeAnimal(animal);
         animalRepository.delete(id);
     }
 
     @Override
-    public Animal addAnimal(Long clientId, Animal animal) {
-        Client client = clientRepository.findOne(clientId);
-
-        client.addAnimal(animal);
-        animal.setClient(client);
+    public Animal addAnimal(Animal animal) {
+        animal.getClient().addAnimal(animal);
+        animal.setFicheMedicale(new FicheMedicale(animal));
         animalRepository.save(animal);
-        clientRepository.save(client);
-
-
+        clientManager.saveClient(animal.getClient());
         return animal;
     }
 

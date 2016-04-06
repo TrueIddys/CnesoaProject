@@ -1,6 +1,6 @@
 package com.cnesoa.repository;
 
-import com.cnesoa.RepositoryConfiguration;
+import com.cnesoa.config.RepositoryConfiguration;
 import com.cnesoa.domain.Client;
 import org.junit.Test;
 import org.junit.runner.RunWith;

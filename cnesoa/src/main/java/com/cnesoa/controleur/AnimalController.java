@@ -1,15 +1,16 @@
 package com.cnesoa.controleur;
 
+import com.cnesoa.config.DateEditor;
 import com.cnesoa.domain.Animal;
 import com.cnesoa.manager.AnimalManager;
 import com.cnesoa.manager.ClientManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 /**
  * Created by Maxime on 30/03/2016.
@@ -33,9 +34,10 @@ public class AnimalController {
 
     @RequestMapping("client/{clientId}/animal/new")
     public String newAnimal(@PathVariable Long clientId, Model model){
-        model.addAttribute("animal", new Animal());
-        model.addAttribute("client", clientManager.getClientById(clientId));
-        return "animalform";
+        Animal animal = new Animal();
+        animal.setClient(clientManager.getClientById(clientId));
+        model.addAttribute("animal", animal);
+        return "animal/animalform";
     }
 
     @RequestMapping(value = "animal", method = RequestMethod.POST)
@@ -43,12 +45,12 @@ public class AnimalController {
         return "redirect:/animal/"+animalId;
     }
 
-    @RequestMapping(value = "client/{clientId}/animal", method = RequestMethod.POST)
-    public String saveAnimal(Animal animal, @PathVariable Long clientId){
+    @RequestMapping(value = "client/animal", method = RequestMethod.POST)
+    public String saveAnimal(Animal animal){
         if (animal.getId() != null)
             animalManager.saveAnimal(animal);
         else
-            animalManager.addAnimal(clientId, animal);
+            animalManager.addAnimal(animal);
         return "redirect:/animal/"+animal.getId();
     }
 
@@ -61,23 +63,26 @@ public class AnimalController {
     @RequestMapping(value = "animals", method = RequestMethod.GET)
     public String list(Model model){
         model.addAttribute("animals", animalManager.listAllAnimal());
-        return "animals";
+        return "animal/animals";
     }
 
-    @RequestMapping("animal/{animalId}/edit/{clientId}")
-    public String edit(@PathVariable Long animalId, @PathVariable Long clientId, Model model){
+    @RequestMapping("animal/{animalId}/edit")
+    public String edit(@PathVariable Long animalId, Model model){
         model.addAttribute("animal", animalManager.getAnimalById(animalId));
-        model.addAttribute("client", clientManager.getClientById(clientId));
 
-        return "animalform";
+        return "animal/animalform";
     }
 
     @RequestMapping("animal/delete/{id}")
     public String delete(@PathVariable Long id){
+        Long clientId = animalManager.getAnimalById(id).getClient().getId();
         animalManager.deleteAnimal(id);
-        return "redirect:/animals";
+        return "redirect:/client/" + clientId;
     }
 
-
+    @InitBinder
+    public void initBinder(final WebDataBinder binder) {
+        binder.registerCustomEditor(Date.class, new DateEditor());
+    }
 
 }

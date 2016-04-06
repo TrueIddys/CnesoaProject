@@ -26,7 +26,7 @@ public class ClientController {
     @RequestMapping("client/new")
     public String newClient(Model model){
         model.addAttribute("client", new Client());
-        return "clientform";
+        return "client/clientform";
     }
 
     @RequestMapping(value = "client", method = RequestMethod.POST)
@@ -44,13 +44,13 @@ public class ClientController {
     @RequestMapping(value = "/clients", method = RequestMethod.GET)
     public String list(Model model){
         model.addAttribute("clients", clientManager.listAllClient());
-        return "clients";
+        return "client/clients";
     }
 
     @RequestMapping("client/edit/{id}")
     public String edit(@PathVariable Long id, Model model){
         model.addAttribute("client", clientManager.getClientById(id));
-        return "clientform";
+        return "client/clientform";
     }
 
     @RequestMapping("client/delete/{id}")

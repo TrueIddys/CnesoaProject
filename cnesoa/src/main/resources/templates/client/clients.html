@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head lang="en">
+    <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
+    <title>Clients</title>
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(clients)}">
+        <h2>Clients</h2>
+        <table class="table">
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Rue</th>
+                <th>Ville</th>
+                <th>Cotisation</th>
+                <th>Voir</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+            <tr th:each="client : ${#lists.sort(clients)}">
+                <td th:text="${client.nom}">Nom</td>
+                <td th:text="${client.prenom}">Prenom</td>
+                <td th:text="${client.mail}">Email</td>
+                <td th:text="${client.rue}">Rue</td>
+                <td th:text="${client.ville}">Ville</td>
+                <td th:text="${client.cotisation}">Cotisation</td>
+                <td><a th:href="@{'/client/' + ${client.id}}">Voir</a> </td>
+                <td><a th:href="@{'/client/edit/' + ${client.id}}">Modifier</a> </td>
+                <td><a th:href="@{'/client/delete/' + ${client.id}}">Supprimer</a> </td>
+            </tr>
+        </table>
+    </div>
+    <div th:unless="${not   #lists.isEmpty(clients)}">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div>
+                    <h3>Pas de clients inscrits.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head lang="en">
+    <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
+    <title>Professeurs</title>
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(professeurs)}">
+        <h2>Professeurs</h2>
+        <table class="table">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Voir</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+            <tr th:each="professeur : ${#lists.sort(professeurs)}">
+                <td th:text="${professeur.nom}">Nom</td>
+                <td th:text="${professeur.prenom}">Prénom</td>
+                <td th:text="${professeur.mail}">Email</td>
+                <td th:text="${professeur.tel}">Téléphone</td>
+                <td><a th:href="@{'/professeur/' + ${professeur.id}}">Voir</a> </td>
+                <td><a th:href="@{'/professeur/edit/' + ${professeur.id}}">Modifier</a> </td>
+                <td><a th:href="@{'/professeur/delete/' + ${professeur.id}}">Supprimer</a> </td>
+            </tr>
+        </table>
+    </div>
+    <div th:unless="${not   #lists.isEmpty(professeurs)}">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div>
+                    <h3>Pas de professeurs inscrits.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

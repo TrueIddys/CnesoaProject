@@ -8,51 +8,58 @@
 <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
 <div class="container">
+    <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
     <h2>Détail du client</h2>
 
     <div class="row">
         <div class="col-md-4">
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table">
                     <thead>
                     <th> </th>
                     <th> </th>
                     </thead>
                     <tbody>
                     <tr>
-                        <td><label>Nom :</label></td>
+                        <td><label>Nom</label></td>
                         <td><p class="form-control-static" th:text="${client.nom}">Nom</p></td>
                     </tr>
                     <tr>
-                        <td><label>Prenom :</label></td>
+                        <td><label>Prenom</label></td>
                         <td><p class="form-control-static" th:text="${client.prenom}">Prenom</p></td>
                     </tr>
                     <tr>
-                        <td><label>Email :</label></td>
+                        <td><label>Email</label></td>
                         <td><p class="form-control-static" th:text="${client.mail}">Email</p></td>
                     </tr>
                     <tr>
-                        <td><label>Rue :</label></td>
+                        <td><label>Téléphone</label></td>
+                        <td><p class="form-control-static" th:text="${client.tel}">Téléphone</p></td>
+                    </tr>
+                    <tr>
+                        <td><label>Rue</label></td>
                         <td><p class="form-control-static" th:text="${client.rue}">Rue</p></td>
                     </tr>
                     <tr>
-                        <td><label>Ville :</label></td>
+                        <td><label>Ville</label></td>
                         <td><p class="form-control-static" th:text="${client.ville}">Ville</p></td>
                     </tr>
                     <tr>
-                        <td><label>Cotisation :</label></td>
+                        <td><label>Cotisation</label></td>
                         <td><p class="form-control-static" th:text="${client.cotisation}">Cotisation</p></td>
                     </tr>
+                    <td><a th:href="@{'/client/edit/' + ${client.id}}">Modifier</a> </td>
+                    <td><a th:href="@{'/client/delete/' + ${client.id}}">Supprimer</a> </td>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3" style="margin-left: 50px">
 
             <form class="form-horizontal" th:object="${client}" th:action="@{/animal}" method="post">
                 <div class="form-group">
-                    <label class="control-label">Animaux :</label>
+                    <label class="control-label">Animaux</label>
                     <select width="" th:field="*{animaux}">
                         <option th:each="animal : ${client.animaux}" th:value="${animal.id}" th:text="${animal.nom}"></option>
                     </select>
@@ -61,18 +68,17 @@
                     <button type="submit" class="btn btn-default">Voir</button>
                 </div>
             </form>
-        </div>
-
-        <div class="col-md-4">
-            <div class="control-group">
+            <div class="control-group" style="margin-left: -15px; margin-top: 15px">
                 <a class="btn btn-default" th:href="@{'/client/' + ${client.id} + '/animal/new'}">Ajouter un animal</a>
             </div>
         </div>
 
-
     </div>
 
+
 </div>
+
+
 
 
 

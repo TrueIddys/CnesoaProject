@@ -2,6 +2,7 @@ package com.cnesoa.manager.impl;
 
 import com.cnesoa.domain.Animal;
 import com.cnesoa.domain.Client;
+import com.cnesoa.manager.AnimalManager;
 import com.cnesoa.manager.ClientManager;
 import com.cnesoa.repository.AnimalRepository;
 import com.cnesoa.repository.ClientRepository;
@@ -18,9 +19,21 @@ public class ClientManagerImpl implements ClientManager {
 
     private AnimalRepository animalRepository;
 
+    private AnimalManager animalManager;
+
+    @Autowired
+    public void setAnimalManager(AnimalManager animalManager){
+        this.animalManager = animalManager;
+    }
+
     @Autowired
     public void setClientRepository(ClientRepository clientRepository){
         this.clientRepository = clientRepository;
+    }
+
+    @Autowired
+    public void setAnimalRepository(AnimalRepository animalRepository){
+        this.animalRepository = animalRepository;
     }
 
     @Override

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com" xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <title>Fiche médicale</title>
+    <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+    <h2>Détails de l'animal</h2>
+    <div class="row">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a th:href="@{'/animal/'+${ficheMedicale.animal.id}}">Profil</a></li>
+            <li role="presentation" class="active"><a th:href="@{'/fichemed/'+${ficheMedicale.animal.id}}">Fiche médicale</a></li>
+        </ul>
+    </div>
+
+    <form class="form-horizontal" th:object="${ficheMedicale}" th:action="@{/fichemed}" method="post">
+        <div class="row">
+
+            <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{animal}"/>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Médical</label>
+                    <div class="col-sm-8">
+                        <div class="radio">
+                            <label style="padding: 0%;"><input type="checkbox" th:field="*{vaccinMaj}"/> Vaccin à jour </label>
+                        </div>
+                        <div class="radio">
+                            <label style="padding: 0%;"><input type="checkbox" th:field="*{sterilise}"/> Stérilisé </label>
+                        </div>
+                        <div class="radio">
+                            <label style="padding: 0%;"><input type="checkbox" th:field="*{vermifuge}"/> Vermifugé </label>
+                        </div>
+                        <div class="radio">
+                            <label style="padding: 0%;"><input type="checkbox" th:field="*{marechal}"/> Maréchal </label>
+                        </div>
+                        <div class="radio">
+                            <label style="padding: 0%;"><input type="checkbox" th:field="*{dentiste}"/> Dentiste </label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Origine</label>
+                    <div class="col-sm-8">
+                        <div class="radio">
+                            <label><input type="radio" value="adopté SPA" th:field="*{origine}"/>adopté SPA </label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" value="trouvé" th:field="*{origine}"/>trouvé </label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" value="donné" th:field="*{origine}"/>donné </label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" value="animalerie" th:field="*{origine}"/>animalerie </label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" value="acheté élevage" th:field="*{origine}"/>acheté élevage </label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Valider</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="margin-left: 40px;">
+                    <div class="form-group">
+                        <label class="control-label">Antécédents médicaux</label>
+                        <div>
+                            <textarea rows="4" class="form-control" th:field="*{antMed}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Antécédents chirurgicaux</label>
+                        <div>
+                            <textarea rows="4" class="form-control" th:field="*{antChir}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Antécédents traumatiques</label>
+                        <div>
+                            <textarea rows="4" class="form-control" th:field="*{antTraum}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">État général</label>
+                        <div>
+                            <textarea rows="6" class="form-control" th:field="*{etatGeneral}"/>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="margin-left: 40px;">
+                    <div class="form-group">
+                        <label class="control-label">Sport</label>
+                        <div>
+                            <textarea rows="4" class="form-control" th:field="*{sport}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Alimentation</label>
+                        <div>
+                            <textarea rows="4" class="form-control" th:field="*{alimentation}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Comportement général et psychologique</label>
+                        <div>
+                            <textarea rows="4" class="form-control" th:field="*{comportement}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Informations complémentaires</label>
+                        <div>
+                            <textarea rows="4" class="form-control" th:field="*{infoComp}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

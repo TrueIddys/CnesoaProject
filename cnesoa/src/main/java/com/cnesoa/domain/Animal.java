@@ -14,60 +14,33 @@ public class Animal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "animal_id")
     private Long id;
 
-    @Column
     private String nom;
 
-    @Column
     private String race;
 
-    @Column
     private String type;
 
-    @Column
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateNaissance;
 
-    @Column
     private String robe;
 
-    @Column
     private String sexe;
-
-    @Column
-    private String origine;
-
-    @Column
-    private String etatGeneral;
-
-    @Column
-    private String antecedantMedicaux;
-
-    @Column
-    private String antecedentChirurgicaux;
-
-    @Column
-    private String antecedantTraumatiques;
-
-    @Column
-    private Boolean vaccinMaj;
-
-    @Column
-    private Boolean sterilise;
-
-    @Column
-    private Boolean vermifuge;
-
-    @Column
-    private Boolean marechal;
-
-    @Column
-    private Boolean dentiste;
 
     @ManyToOne
     private Client client;
 
+    @OneToOne(mappedBy = "animal",cascade = CascadeType.ALL)
+    private FicheMedicale ficheMedicale;
+
+    /*____________________________________________*/
+
+    public Animal() {
+        this.ficheMedicale = new FicheMedicale(this);
+    }
 
     public Long getId() {
         return id;
@@ -125,6 +98,7 @@ public class Animal {
         this.sexe = sexe;
     }
 
+
     public Client getClient(){
         return this.client;
     }
@@ -137,83 +111,11 @@ public class Animal {
         return nom;
     }
 
-    public String getOrigine() {
-        return origine;
+    public FicheMedicale getFicheMedicale() {
+        return ficheMedicale;
     }
 
-    public void setOrigine(String origine) {
-        this.origine = origine;
-    }
-
-    public String getEtatGeneral() {
-        return etatGeneral;
-    }
-
-    public void setEtatGeneral(String etatGeneral) {
-        this.etatGeneral = etatGeneral;
-    }
-
-    public String getAntecedantMedicaux() {
-        return antecedantMedicaux;
-    }
-
-    public void setAntecedantMedicaux(String antecedantMedicaux) {
-        this.antecedantMedicaux = antecedantMedicaux;
-    }
-
-    public String getAntecedentChirurgicaux() {
-        return antecedentChirurgicaux;
-    }
-
-    public void setAntecedentChirurgicaux(String antecedentChirurgicaux) {
-        this.antecedentChirurgicaux = antecedentChirurgicaux;
-    }
-
-    public String getAntecedantTraumatiques() {
-        return antecedantTraumatiques;
-    }
-
-    public void setAntecedantTraumatiques(String antecedantTraumatiques) {
-        this.antecedantTraumatiques = antecedantTraumatiques;
-    }
-
-    public Boolean getVaccinMaj() {
-        return vaccinMaj;
-    }
-
-    public void setVaccinMaj(Boolean vaccinMaj) {
-        this.vaccinMaj = vaccinMaj;
-    }
-
-    public Boolean getSterilise() {
-        return sterilise;
-    }
-
-    public void setSterilise(Boolean sterilise) {
-        this.sterilise = sterilise;
-    }
-
-    public Boolean getVermifuge() {
-        return vermifuge;
-    }
-
-    public void setVermifuge(Boolean vermifuge) {
-        this.vermifuge = vermifuge;
-    }
-
-    public Boolean getMarechal() {
-        return marechal;
-    }
-
-    public void setMarechal(Boolean marechal) {
-        this.marechal = marechal;
-    }
-
-    public Boolean getDentiste() {
-        return dentiste;
-    }
-
-    public void setDentiste(Boolean dentiste) {
-        this.dentiste = dentiste;
+    public void setFicheMedicale(FicheMedicale ficheMedicale) {
+        this.ficheMedicale = ficheMedicale;
     }
 }
