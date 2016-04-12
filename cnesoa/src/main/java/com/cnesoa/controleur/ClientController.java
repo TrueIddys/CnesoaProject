@@ -38,7 +38,7 @@ public class ClientController {
     @RequestMapping("client/{id}")
     public String showClient(@PathVariable Long id, Model model){
         model.addAttribute("client", clientManager.getClientById(id));
-        return "clientshow";
+        return "client/clientshow";
     }
 
     @RequestMapping(value = "/clients", method = RequestMethod.GET)
@@ -58,7 +58,4 @@ public class ClientController {
         clientManager.deleteClient(id);
         return "redirect:/clients";
     }
-
-
-
 }

@@ -43,7 +43,15 @@ public class AnimalManagerImpl implements AnimalManager {
 
     @Override
     public Animal saveAnimal(Animal animal) {
-        return animalRepository.save(animal);
+        if (animal.getId() == null) {
+            animal.getClient().addAnimal(animal);
+            animal.setFicheMedicale(new FicheMedicale(animal));
+            animalRepository.save(animal);
+            clientManager.saveClient(animal.getClient());
+            return animal;
+        }
+        else
+            return animalRepository.save(animal);
     }
 
     @Override

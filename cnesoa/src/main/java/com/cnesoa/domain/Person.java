@@ -72,4 +72,10 @@ public abstract class Person implements Comparable<Person>{
     private String tel;
 
     private String password;
+
+    protected String getName(){
+        return getPrenom() + " " + getNom();
+    }
+
+
 }

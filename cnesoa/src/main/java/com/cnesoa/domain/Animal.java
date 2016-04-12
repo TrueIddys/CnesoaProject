@@ -3,14 +3,17 @@ package com.cnesoa.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Maxime on 30/03/2016.
  */
 
 @Entity
-public class Animal {
+public class Animal implements Serializable, Comparable<Animal> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,10 +39,13 @@ public class Animal {
     @OneToOne(mappedBy = "animal",cascade = CascadeType.ALL)
     private FicheMedicale ficheMedicale;
 
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Consultation> consultations = new ArrayList<>();
+
     /*____________________________________________*/
 
     public Animal() {
-        this.ficheMedicale = new FicheMedicale(this);
+
     }
 
     public Long getId() {
@@ -98,7 +104,6 @@ public class Animal {
         this.sexe = sexe;
     }
 
-
     public Client getClient(){
         return this.client;
     }
@@ -107,15 +112,33 @@ public class Animal {
         this.client = client;
     }
 
-    public String toString(){
-        return nom;
-    }
-
     public FicheMedicale getFicheMedicale() {
         return ficheMedicale;
     }
 
     public void setFicheMedicale(FicheMedicale ficheMedicale) {
         this.ficheMedicale = ficheMedicale;
+    }
+
+    public List<Consultation> getConsultations() {
+        return consultations;
+    }
+
+    public void setConsultations(List<Consultation> consultations) {
+        this.consultations = consultations;
+    }
+
+    public void addConsultation(Consultation consultation){
+        this.consultations.add(consultation);
+    }
+
+    public String toString(){
+        return getNom();
+    }
+
+    @Override
+    public int compareTo(Animal o) {
+        int d = getNom().compareTo(o.getNom());
+        return d;
     }
 }

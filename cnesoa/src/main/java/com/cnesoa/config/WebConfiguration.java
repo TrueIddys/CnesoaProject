@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by Maxime on 30/03/2016.
  */
 @Configuration
-public class WebConfiguration {
+public class WebConfiguration{
 
     @Bean
     ServletRegistrationBean h2servletRegistration(){
@@ -18,4 +18,5 @@ public class WebConfiguration {
         registrationBean.addUrlMappings("/console/*");
         return registrationBean;
     }
+
 }

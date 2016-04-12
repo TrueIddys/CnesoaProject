@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
  */
 public class DateEditor extends PropertyEditorSupport {
 
-    private static final String format = "yyyy-MM-dd";
+    private static final String format = "yyyy/MM/dd hh:mm";
 
     public String getAsText(){
         return getValue() != null

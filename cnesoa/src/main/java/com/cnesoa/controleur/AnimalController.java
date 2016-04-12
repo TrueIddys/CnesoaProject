@@ -47,17 +47,14 @@ public class AnimalController {
 
     @RequestMapping(value = "client/animal", method = RequestMethod.POST)
     public String saveAnimal(Animal animal){
-        if (animal.getId() != null)
-            animalManager.saveAnimal(animal);
-        else
-            animalManager.addAnimal(animal);
+        animalManager.saveAnimal(animal);
         return "redirect:/animal/"+animal.getId();
     }
 
     @RequestMapping("animal/{id}")
     public String showAnimal(@PathVariable Long id, Model model){
         model.addAttribute("animal", animalManager.getAnimalById(id));
-        return "animalshow";
+        return "animal/animalshow";
     }
 
     @RequestMapping(value = "animals", method = RequestMethod.GET)

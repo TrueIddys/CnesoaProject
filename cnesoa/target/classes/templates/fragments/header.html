@@ -7,35 +7,38 @@
 <body>
 
 <div th:fragment="header">
-    <nav class="navbar navbar-dark bg-inverse navbar-fixed-top ">
+    <nav class="navbar navbar-dark bg-inverse navbar-static-top ">
         <div class="container-fluid">
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <a class="navbar-brand" href="/">C-NESOA</a>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clients <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Clients
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href="#" th:href="@{/clients}">Clients</a></li>
                             <li><a href="#" th:href="@{/client/new}">Ajouter un client</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Élèves <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" th:href="@{/eleves }">Élèves</a></li>
-                        <li><a href="#" th:href="@{/eleve/new}">Ajouter un élève</a></li>
-                    </ul>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Élèves
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" th:href="@{/eleves }">Élèves</a></li>
+                            <li><a href="#" th:href="@{/eleve/new}">Ajouter un élève</a></li>
+                        </ul>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Professeurs
-                            <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#" th:href="@{/professeurs }">Professeurs</a></li>
                             <li><a href="#" th:href="@{/professeur/new}">Ajouter un professeur</a></li>
                         </ul>
                     </li>
-                </li>
+                    </li>
                 </ul>
             </div>
         </div>

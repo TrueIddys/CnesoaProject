@@ -1,7 +1,10 @@
 package com.cnesoa.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Maxime on 06/04/2016.
@@ -12,6 +15,9 @@ public class Professeur extends Person implements Serializable {
 
     private String code;
 
+    @OneToMany
+    private List<InfosConsult> infosConsults = new ArrayList<>();
+
     public String getCode(){
         return this.code;
     }
@@ -20,6 +26,21 @@ public class Professeur extends Person implements Serializable {
         this.code = code;
     }
 
+    public List<InfosConsult> getInfosConsulst() {
+        return infosConsults;
+    }
+
+    public void setInfosConsults(List<InfosConsult> infosConsults) {
+        this.infosConsults = infosConsults;
+    }
+
+    public void addInfosConsult(InfosConsult infosConsult){
+        this.infosConsults.add(infosConsult);
+    }
+
+    public String getName(){
+        return super.getName();
+    }
 
     @Override
     public int compareTo(Person o) {

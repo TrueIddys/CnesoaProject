@@ -1,9 +1,12 @@
 package com.cnesoa.domain;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Maxime on 30/03/2016.
@@ -20,7 +23,7 @@ public class Client extends Person implements Serializable {
     private Cotisation cotisation;
 
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private Set<Animal> animaux = new HashSet<>();
+    private List<Animal> animaux = new ArrayList<>();
 
     public String getRue(){
         return rue;
@@ -48,11 +51,11 @@ public class Client extends Person implements Serializable {
         this.cotisation = cotisation;
     }
 
-    public Set<Animal> getAnimaux(){
+    public List<Animal> getAnimaux(){
         return animaux;
     }
 
-    public void setAnimaux(Set<Animal> animaux){
+    public void setAnimaux(List<Animal> animaux){
         this.animaux = animaux;
     }
 
@@ -68,15 +71,15 @@ public class Client extends Person implements Serializable {
         this.animaux.remove(animal);
     }
 
-    public  String toString(){
-        return getPrenom() + " " + getNom();
-    }
-
     @Override
     public int compareTo(Person o) {
         int d = getNom().compareTo(o.getNom());
         if (d == 0)
             d = getPrenom().compareTo(o.getPrenom());
         return d;
+    }
+
+    public String getName(){
+        return super.getName();
     }
 }

@@ -3,12 +3,53 @@
 <head lang="en">
     <title>Cnesoa Project Base</title>
     <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
+    <link rel="stylesheet" th:href="@{/bootstrap-calendar/css/calendar.css}"/>
+
+
 </head>
 <body>
 <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 <div class="container-fluid">
 
     <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+
+
+    <div id="calendar"></div>
+
+    <script type="text/javascript" th:src="@{/underscore/underscore-min.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-calendar/js/language/fr-FR.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-calendar/js/calendar.js}"></script>
+    <script type="text/javascript" th:src="@{/moment/moment.js}"></script>
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+        var calendar = $("#calendar").calendar(
+                {
+                    language: 'fr-FR',
+                    tmpl_path: "/bootstrap-calendar/tmpls/",
+                    events_source: function () {
+                        consultations = /*[[${consultations}]]*/ 'ble';
+                        if (consultations[0] != null){
+                            var array = new Array(consultations.length);
+                            for(i = 0; i < array.length; i++) {
+                                array[i] = {
+                                    "id": consultations[i].id,
+                                    "title": "Consultation",
+                                    "url": "http://example.com",
+                                    "class": "event-important",
+                                    "start": consultations[i].date, // Milliseconds
+                                    "end": consultations[i].date + 3600000 // Milliseconds
+
+                                }
+                            }
+                            return array;
+                        }
+                        else {
+                            document.write("Pas de consultations");
+                        }
+                    }});
+
+        /*]]>*/
+    </script>
 </div>
 </body>
 </html>
