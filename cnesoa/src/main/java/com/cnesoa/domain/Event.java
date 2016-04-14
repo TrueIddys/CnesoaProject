@@ -9,9 +9,7 @@ public class Event {
 
     private Long date;
 
-    private String eleve1;
-
-    private String eleve2;
+    private String binome;
 
     private String professeur;
 
@@ -37,20 +35,12 @@ public class Event {
         this.date = date;
     }
 
-    public String getEleve1() {
-        return eleve1;
+    public String getBinome() {
+        return binome;
     }
 
-    public void setEleve1(String eleve1) {
-        this.eleve1 = eleve1;
-    }
-
-    public String getEleve2() {
-        return eleve2;
-    }
-
-    public void setEleve2(String eleve2) {
-        this.eleve2 = eleve2;
+    public void setBinome(String binome) {
+        this.binome = binome;
     }
 
     public String getProfesseur() {

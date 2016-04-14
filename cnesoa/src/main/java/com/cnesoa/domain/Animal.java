@@ -132,6 +132,10 @@ public class Animal implements Serializable, Comparable<Animal> {
         this.consultations.add(consultation);
     }
 
+    public void removeConsultation(Consultation consultation){
+        this.consultations.remove(consultation);
+    }
+
     public String toString(){
         return getNom();
     }

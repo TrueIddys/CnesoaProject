@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head lang="en">
+    <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
+    <title>Ouhlala</title>
+</head>
+<body>
+
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div class="content-wrap">
+        <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div>
+                    <h3>Oups ! Le site a rencontré une erreur inattendue. Veuillez nous excuser pour la gêne occasionnée..</h3>
+                    <a class="btn btn-default" th:href="@{'/'}">Retourner à l'accueil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

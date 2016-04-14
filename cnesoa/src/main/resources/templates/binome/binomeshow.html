@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Binôme</title>
+    <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
+</head>
+<body>
+
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div class="content-wrap">
+        <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+        <h2>Détail du binôme</h2>
+        <hr class="horizontal"/>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <th> </th>
+                        <th> </th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><label>Numéro</label></td>
+                            <td><p class="form-control-static" th:text="${binome.numBinome}">Numéro</p></td>
+                        </tr>
+                        <tr>
+                            <td><label>Premier élève</label></td>
+                            <td><p class="form-control-static" th:text="${binome.eleve1.getName()}">Nom</p></td>
+                        </tr>
+                        <tr>
+                            <td><label>Deuxième élève</label></td>
+                            <td><p class="form-control-static" th:text="${binome.eleve2.getName()}">Prenom</p></td>
+                        </tr>
+                        <td><a th:href="@{'/binome/edit/' + ${binome.id}}">Modifier</a> </td>
+                        <td><a th:href="@{'/binome/delete/' + ${binome.id}}">Supprimer</a> </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

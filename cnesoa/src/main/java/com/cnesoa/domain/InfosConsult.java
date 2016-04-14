@@ -11,9 +11,8 @@ public class InfosConsult {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "infosconsult_id")
     private Long id;
-
-    private Integer numBinome;
 
     private Integer numBox;
 
@@ -21,10 +20,7 @@ public class InfosConsult {
     private Professeur professeur;
 
     @ManyToOne
-    private Eleve eleve1;
-
-    @ManyToOne
-    private Eleve eleve2;
+    private Binome binome;
 
     @OneToOne
     @JoinColumn(name = "consultation_id")
@@ -48,14 +44,6 @@ public class InfosConsult {
         this.id = id;
     }
 
-    public Integer getNumBinome() {
-        return numBinome;
-    }
-
-    public void setNumBinome(Integer numBinome) {
-        this.numBinome = numBinome;
-    }
-
     public Integer getNumBox() {
         return numBox;
     }
@@ -72,27 +60,19 @@ public class InfosConsult {
         this.professeur = professeur;
     }
 
-    public Eleve getEleve1() {
-        return eleve1;
-    }
-
-    public void setEleve1(Eleve eleve1) {
-        this.eleve1 = eleve1;
-    }
-
-    public Eleve getEleve2() {
-        return eleve2;
-    }
-
-    public void setEleve2(Eleve eleve2) {
-        this.eleve2 = eleve2;
-    }
-
     public Consultation getConsultation() {
         return consultation;
     }
 
     public void setConsultation(Consultation consultation) {
         this.consultation = consultation;
+    }
+
+    public Binome getBinome() {
+        return binome;
+    }
+
+    public void setBinome(Binome binome) {
+        this.binome = binome;
     }
 }

@@ -1,7 +1,9 @@
 package com.cnesoa.manager.impl;
 
 import com.cnesoa.domain.InfosConsult;
+import com.cnesoa.manager.BinomeManager;
 import com.cnesoa.manager.InfosConsultManager;
+import com.cnesoa.manager.ProfesseurManager;
 import com.cnesoa.repository.InfosConsultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,18 +17,18 @@ public class InfosConsultManagerImpl implements InfosConsultManager{
 
     private InfosConsultRepository infosConsultRepository;
 
-    private EleveManagerImpl eleveManager;
+    private BinomeManager binomeManager;
 
-    private ProfesseurManagerImpl professeurManager;
+    private ProfesseurManager professeurManager;
 
     @Autowired
-    private void setProfesseurManager(ProfesseurManagerImpl professeurManager){
+    private void setProfesseurManager(ProfesseurManager professeurManager){
         this.professeurManager = professeurManager;
     }
 
     @Autowired
-    private void setEleveManager(EleveManagerImpl eleveManager){
-        this.eleveManager = eleveManager;
+    private void setBinomeManager(BinomeManager binomeManager){
+        this.binomeManager = binomeManager;
     }
 
     @Autowired
@@ -47,12 +49,10 @@ public class InfosConsultManagerImpl implements InfosConsultManager{
     @Override
     public InfosConsult saveInfosConsult(InfosConsult infosConsult) {
         if (infosConsult.getId() == null){
-            infosConsult.getEleve1().addInfosConsult(infosConsult);
-            infosConsult.getEleve2().addInfosConsult(infosConsult);
+            infosConsult.getBinome().addInfosConsult(infosConsult);
             infosConsult.getProfesseur().addInfosConsult(infosConsult);
             infosConsultRepository.save(infosConsult);
-            eleveManager.saveEleve(infosConsult.getEleve1());
-            eleveManager.saveEleve(infosConsult.getEleve2());
+            binomeManager.saveBinome(infosConsult.getBinome());
             professeurManager.saveProfesseur(infosConsult.getProfesseur());
             return infosConsult;
         }

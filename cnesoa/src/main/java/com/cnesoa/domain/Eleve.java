@@ -1,9 +1,8 @@
 package com.cnesoa.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Maxime on 05/04/2016.
@@ -12,20 +11,20 @@ import java.util.List;
 @Entity
 public class Eleve extends Person implements Serializable {
 
-    @OneToMany
-    private List<InfosConsult> infosConsults = new ArrayList<>();
+    @OneToOne
+    private Binome binome;
 
-    public List<InfosConsult> getInfosConsults() {
-        return infosConsults;
+    /*_______________________*/
+
+    public Binome getBinome() {
+        return binome;
     }
 
-    public void setInfosConsults(List<InfosConsult> infosConsults) {
-        this.infosConsults = infosConsults;
+    public void setBinome(Binome binome) {
+        this.binome = binome;
     }
 
-    public void addInfosConsult(InfosConsult infosConsult){
-        this.infosConsults.add(infosConsult);
-    }
+    /*________________________*/
 
     @Override
     public int compareTo(Person o) {

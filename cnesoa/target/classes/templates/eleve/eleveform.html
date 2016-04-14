@@ -5,43 +5,46 @@
     <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
 </head>
 <body>
-<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 <div class="container">
-    <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
-    <h2>Détails d'un élève</h2>
-    <div>
-        <form class="form-horizontal" th:object="${eleve}" th:action="@{/eleve}" method="post">
-            <input type="hidden" th:field="*{id}"/>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Nom :</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control court" th:field="*{nom}"/>
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div class="content-wrap">
+        <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+        <h2>Détails d'un élève</h2>
+        <hr class="horizontal"/>
+
+        <div class="form">
+            <form class="form-horizontal" th:object="${eleve}" th:action="@{/eleve}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group">
+                    <div class="">
+                        <input type="text" class="form-control court" th:field="*{nom}" placeholder="Nom"/>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Prénom :</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control court" th:field="*{prenom}"/>
+                <div class="form-group">
+                    <div class="">
+                        <input type="text" class="form-control court" th:field="*{prenom}" placeholder="Prénom"/>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Email :</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control long" th:field="*{mail}"/>
+                <div class="form-group">
+                    <div class="">
+                        <input type="text" class="form-control long" th:field="*{mail}" placeholder="Email"/>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Téléphone :</label>
-                <div class="col-sm-10">
-                    <input type="tel" class="form-control court"
-                           pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$"
-                           th:field="*{tel}"/>
+                <div class="form-group">
+                    <div class="">
+                        <input type="tel" class="form-control court"
+                               pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$"
+                               th:field="*{tel}" placeholder="Téléphone"/>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <button type="submit" class="btn btn-default btn-basdepage">Valider</button>
-            </div>
-        </form>
+                <div class="form-group">
+                    <div class="">
+                        <button type="submit" class="btn btn-default btn-basdepage">Valider</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

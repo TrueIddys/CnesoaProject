@@ -8,48 +8,82 @@
 
 </head>
 <body>
-<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-<div class="container-fluid">
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
-    <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+    <div class="content-wrap">
+        <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+        <div class="page-header">
+            <div class="pull-right form-inline">
+                <div class="btn-group">
+                    <button class="btn btn-primary" data-calendar-nav="prev">Précédent</button>
+                    <button class="btn" data-calendar-nav="today">Aujourd'hui</button>
+                    <button class="btn btn-primary" data-calendar-nav="next">Suivant</button>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-warning" data-calendar-view="year">Année</button>
+                    <button class="btn btn-warning active" data-calendar-view="month">Mois</button>
+                    <button class="btn btn-warning" data-calendar-view="week">Semaine</button>
+                    <button class="btn btn-warning" data-calendar-view="day">Jour</button>
+                </div>
+            </div>
+            <h3></h3>
+        </div>
+        <div id="calendar"></div>
 
-
-    <div id="calendar"></div>
-
-    <script type="text/javascript" th:src="@{/underscore/underscore-min.js}"></script>
-    <script type="text/javascript" th:src="@{/bootstrap-calendar/js/language/fr-FR.js}"></script>
-    <script type="text/javascript" th:src="@{/bootstrap-calendar/js/calendar.js}"></script>
-    <script type="text/javascript" th:src="@{/moment/moment.js}"></script>
-    <script type="text/javascript" th:inline="javascript">
-        /*<![CDATA[*/
-        var calendar = $("#calendar").calendar(
-                {
-                    language: 'fr-FR',
-                    tmpl_path: "/bootstrap-calendar/tmpls/",
-                    events_source: function () {
-                        consultations = /*[[${consultations}]]*/ 'ble';
-                        if (consultations[0] != null){
-                            var array = new Array(consultations.length);
-                            for(i = 0; i < array.length; i++) {
-                                array[i] = {
-                                    "id": consultations[i].id,
-                                    "title": "Consultation",
-                                    "url": "http://example.com",
-                                    "class": "event-important",
-                                    "start": consultations[i].date, // Milliseconds
-                                    "end": consultations[i].date + 3600000 // Milliseconds
-
+        <script type="text/javascript" th:src="@{/underscore/underscore-min.js}"></script>
+        <script type="text/javascript" th:src="@{/bootstrap-calendar/js/language/fr-FR.js}"></script>
+        <script type="text/javascript" th:src="@{/bootstrap-calendar/js/calendar.js}"></script>
+        <script type="text/javascript" th:src="@{/bootstrap-calendar/js/app.js}"></script>
+        <script type="text/javascript" th:src="@{/moment/moment.js}"></script>
+        <script type="text/javascript" th:inline="javascript">
+            /*<![CDATA[*/
+            var calendar = $("#calendar").calendar(
+                    {
+                        language: 'fr-FR',
+                        tmpl_path: "/bootstrap-calendar/tmpls/",
+                        events_source: function () {
+                            consultations = /*[[${consultations}]]*/ 'ble';
+                            if (consultations[0] != null){
+                                var array = new Array(consultations.length);
+                                for(i = 0; i < array.length; i++) {
+                                    array[i] = {
+                                        "id": consultations[i].id,
+                                        "title": "Consultation",
+                                        "url": "http://example.com",
+                                        "class": "event-important",
+                                        "start": consultations[i].date, // Milliseconds
+                                        "end": consultations[i].date + 5400000 // Milliseconds
+                                    }
                                 }
+                                return array;
                             }
-                            return array;
-                        }
-                        else {
-                            document.write("Pas de consultations");
-                        }
-                    }});
+                            else {
+                                document.write("Pas de consultations");
+                            }
+                        },
+                        onAfterViewLoad: function(view) {
+                            $('.page-header h3').text(this.getTitle());
+                            $('.btn-group button').removeClass('active');
+                            $('button[data-calendar-view="' + view + '"]').addClass('active');
+                        }});
+            $('.btn-group button[data-calendar-nav]').each(function() {
+                var $this = $(this);
+                $this.click(function() {
+                    calendar.navigate($this.data('calendar-nav'));
+                });
+            });
 
-        /*]]>*/
-    </script>
+            $('.btn-group button[data-calendar-view]').each(function() {
+                var $this = $(this);
+                $this.click(function() {
+                    calendar.view($this.data('calendar-view'));
+                });
+            });
+
+            /*]]>*/
+        </script>
+    </div>
 </div>
 </body>
 </html>

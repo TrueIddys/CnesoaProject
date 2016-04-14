@@ -1,8 +1,11 @@
 package com.cnesoa.manager.impl;
 
+import com.cnesoa.domain.Animal;
 import com.cnesoa.domain.Consultation;
 import com.cnesoa.domain.Event;
+import com.cnesoa.manager.AnimalManager;
 import com.cnesoa.manager.ConsultationManager;
+import com.cnesoa.manager.InfosConsultManager;
 import com.cnesoa.repository.ConsultationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,9 +22,9 @@ public class ConsultationManagerImpl implements ConsultationManager {
 
     private ConsultationRepository consultationRepository;
 
-    private AnimalManagerImpl animalManager;
+    private AnimalManager animalManager;
 
-    private InfosConsultManagerImpl infosConsultManager;
+    private InfosConsultManager infosConsultManager;
 
 
     @Autowired
@@ -30,12 +33,12 @@ public class ConsultationManagerImpl implements ConsultationManager {
     }
 
     @Autowired
-    private void setAnimalManager(AnimalManagerImpl animalManager){
+    private void setAnimalManager(AnimalManager animalManager){
         this.animalManager = animalManager;
     }
 
     @Autowired
-    private void setInfosConsultManager(InfosConsultManagerImpl infosConsultManager){
+    private void setInfosConsultManager(InfosConsultManager infosConsultManager){
         this.infosConsultManager = infosConsultManager;
     }
 
@@ -55,8 +58,7 @@ public class ConsultationManagerImpl implements ConsultationManager {
             consultation.getAnimal().addConsultation(consultation);
             consultation.getInfosConsult().setConsultation(consultation);
             consultationRepository.save(consultation);
-
-//            animalManager.saveAnimal(consultation.getAnimal());
+            animalManager.saveAnimal(consultation.getAnimal());
             return consultation;
         }
         return consultationRepository.save(consultation);
@@ -64,6 +66,10 @@ public class ConsultationManagerImpl implements ConsultationManager {
 
     @Override
     public void deleteConsultation(Long id) {
+        Consultation consultation = getConsultationById(id);
+        Animal animal = animalManager.getAnimalById(consultation.getAnimal().getId());
+        animal.removeConsultation(consultation);
+        animalManager.saveAnimal(animal);
         consultationRepository.delete(id);
     }
 
@@ -72,8 +78,7 @@ public class ConsultationManagerImpl implements ConsultationManager {
         Event e = new Event();
         e.setId(consultation.getId().toString());
         e.setAnimal(consultation.getAnimal().getNom());
-        e.setEleve1(consultation.getInfosConsult().getEleve1().getName());
-        e.setEleve2(consultation.getInfosConsult().getEleve2().getName());
+        e.setBinome(consultation.getInfosConsult().getBinome().getName());
         e.setProfesseur(consultation.getInfosConsult().getProfesseur().getName());
         e.setDate(consultation.getDateConsultation().getTime());
         e.setProprio(consultation.getAnimal().getClient().getName());

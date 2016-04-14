@@ -29,6 +29,8 @@ public class ClientLoader implements ApplicationListener<ContextRefreshedEvent>{
 
     private ConsultationManager consultationManager;
 
+    private BinomeManager binomeManager;
+
     private Logger log = Logger.getLogger(ClientLoader.class);
 
     @Autowired
@@ -49,6 +51,11 @@ public class ClientLoader implements ApplicationListener<ContextRefreshedEvent>{
     @Autowired
     public void setProfesseurManager(ProfesseurManager professeurManager){
         this.professeurManager = professeurManager;
+    }
+
+    @Autowired
+    public void setBinomeManager(BinomeManager binomeManager){
+        this.binomeManager = binomeManager;
     }
 
     @Autowired
@@ -113,14 +120,20 @@ public class ClientLoader implements ApplicationListener<ContextRefreshedEvent>{
         prof1.setTel("0689457896");
         professeurManager.saveProfesseur(prof1);
 
+        Binome bin1 = new Binome();
+        bin1.setEleve1(eleve1);
+        bin1.setEleve2(eleve2);
+        bin1.setNumBinome(1);
+        binomeManager.saveBinome(bin1);
+
         Consultation cons1 = new Consultation(animal1);
         Calendar c = Calendar.getInstance();
         c.setTime(Date.from(Instant.now()));
         c.add(Calendar.DATE, 1);
         cons1.setDateConsultation(c.getTime());
         cons1.setInfosConsult(new InfosConsult(cons1));
-        cons1.getInfosConsult().setEleve1(eleve1);
-        cons1.getInfosConsult().setEleve2(eleve2);
+        cons1.setAnimal(animal1);
+        cons1.getInfosConsult().setBinome(bin1);
         cons1.getInfosConsult().setProfesseur(prof1);
         consultationManager.saveConsultation(cons1);
 

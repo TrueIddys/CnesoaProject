@@ -5,12 +5,15 @@
     <title>Clients</title>
 </head>
 <body>
-<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
 <div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div class="content-wrap">
     <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
     <div th:if="${not #lists.isEmpty(clients)}">
         <h2>Clients</h2>
+        <hr class="horizontal"/>
+
         <table class="table">
             <tr>
                 <th>Nom</th>
@@ -44,6 +47,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 

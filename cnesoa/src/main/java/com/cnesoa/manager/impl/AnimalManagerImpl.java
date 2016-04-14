@@ -1,6 +1,7 @@
 package com.cnesoa.manager.impl;
 
 import com.cnesoa.domain.Animal;
+import com.cnesoa.domain.Client;
 import com.cnesoa.domain.FicheMedicale;
 import com.cnesoa.manager.AnimalManager;
 import com.cnesoa.manager.ClientManager;
@@ -17,9 +18,6 @@ public class AnimalManagerImpl implements AnimalManager {
     private AnimalRepository animalRepository;
 
     private ClientManager clientManager;
-
-
-
 
     @Autowired
     public void setAnimalRepository(AnimalRepository animalRepository){
@@ -57,7 +55,9 @@ public class AnimalManagerImpl implements AnimalManager {
     @Override
     public void deleteAnimal(Long id) {
         Animal animal = animalRepository.findOne(id);
-        clientManager.getClientById(animal.getClient().getId()).removeAnimal(animal);
+        Client client = clientManager.getClientById(animal.getClient().getId());
+        client.removeAnimal(animal);
+        clientManager.saveClient(client);
         animalRepository.delete(id);
     }
 

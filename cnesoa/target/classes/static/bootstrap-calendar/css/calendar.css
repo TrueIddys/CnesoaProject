@@ -396,7 +396,6 @@
   font-weight: normal;
 }
 .cal-year-box .row-fluid:hover {
-  background-color: #fafafa;
 }
 .cal-month-day {
   height: 100px;
@@ -492,8 +491,8 @@ span[data-cal-date]:hover {
 }
 #cal-slide-content {
   padding: 20px;
+  background-color: #080808;
   color: #ffffff;
-  background-image: url("../img/dark_wood.png");
   -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
   box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
 }
