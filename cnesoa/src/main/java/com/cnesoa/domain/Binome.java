@@ -1,7 +1,11 @@
 package com.cnesoa.domain;
 
+import com.cnesoa.domain.Consultation.InfosConsult;
+import com.cnesoa.domain.Person.Eleve;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,18 +18,20 @@ public class Binome implements Serializable, Comparable<Binome>{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    //numéro du binome
     private Integer numBinome;
 
-    @OneToOne
-    @JoinColumn(name = "eleve1_id")
+    //1er élève du binome
+    @ManyToOne
     private Eleve eleve1;
 
-    @OneToOne
-    @JoinColumn(name = "eleve2_id")
+    //2ème élève du binome
+    @ManyToOne
     private Eleve eleve2;
 
-    @OneToMany
-    private List<InfosConsult> infosConsult;
+    //liste des consultations liées au binome
+    @OneToMany(mappedBy = "binome", cascade = CascadeType.PERSIST)
+    private List<InfosConsult> infosConsult = new ArrayList<>();
 
     /*_____________________________*/
 
@@ -66,20 +72,27 @@ public class Binome implements Serializable, Comparable<Binome>{
     }
 
     public void setInfosConsult(List<InfosConsult> infosConsult) {
-        this.infosConsult = infosConsult;
+        this.infosConsult.clear();
+        this.infosConsult.addAll(infosConsult);
+    }
+
+
+    /*__________________________*/
+
+    public Binome(){
     }
 
     public void addInfosConsult(InfosConsult infosConsult){
         this.infosConsult.add(infosConsult);
     }
 
-/*__________________________*/
+    public void removeInfosConsult(InfosConsult infosConsult1) { this.infosConsult.remove(infosConsult1);}
+
+    /*__________________________*/
 
     public String getName(){
         return eleve1.getName() + " et " + eleve2.getName();
     }
-
-    /*__________________________*/
 
     @Override
     public int compareTo(Binome o) {

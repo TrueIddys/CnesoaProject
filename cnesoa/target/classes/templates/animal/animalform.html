@@ -7,8 +7,8 @@
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/searchbar :: searchbar"></th:block> /*/-->
     <div class="content-wrap">
-
     <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
         <h2>Détails de l'animal</h2>
         <hr class="horizontal"/>
@@ -19,17 +19,18 @@
                 <input type="hidden" th:field="*{ficheMedicale}"/>
                 <div class="form-group">
                     <div class="">
-                        <input type="text" class="form-control court" th:field="*{nom}" placeholder="Nom"/>
+                        <input required="required" type="text" class="form-control court" th:field="*{nom}" placeholder="Nom"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="">
-                        <input type="date" class="form-control court" th:field="*{dateNaissance}" placeholder="Date de naissance"/>
+                        <input type="date" id="datefield"
+                               class="form-control court" th:field="*{dateNaissance}" placeholder="Date de naissance"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="">
-                        <input type="text" class="form-control court" th:field="*{race}" placeholder="Race"/>
+                        <input required="required" type="text" class="form-control court" th:field="*{race}" placeholder="Race"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -64,6 +65,20 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    }
+    if(mm<10){
+        mm='0'+mm
+    }
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("datefield").setAttribute("max", today);
+</script>
 
 </body>
 </html>

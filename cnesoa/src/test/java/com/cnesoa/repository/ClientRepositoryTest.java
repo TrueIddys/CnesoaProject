@@ -1,7 +1,8 @@
 package com.cnesoa.repository;
 
 import com.cnesoa.config.RepositoryConfiguration;
-import com.cnesoa.domain.Client;
+import com.cnesoa.domain.Person.Client;
+import com.cnesoa.repository.person.ClientRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,9 @@ public class ClientRepositoryTest {
     {
         //setup product
         Client client = new Client();
-        client.setNom("Lapin");
-        client.setPrenom("Georges");
-        client.setMail("georgesla@cnesoa.fr");
+//        client.setNom("Lapin");
+//        client.setPrenom("Georges");
+//        client.setMail("georgesla@cnesoa.fr");
 
         //save product, verify id has value after save
         assertNull(client.getId());
@@ -50,7 +51,7 @@ public class ClientRepositoryTest {
         assertEquals(client.getNom(), fetched.getNom());
 
         //update description and save
-        fetched.setNom("Rabbit");
+//        fetched.setNom("Rabbit");
         clientRepository.save(fetched);
 
         //get from DB, should be updated
