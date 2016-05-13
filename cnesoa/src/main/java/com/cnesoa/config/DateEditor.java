@@ -6,10 +6,11 @@ import java.text.SimpleDateFormat;
 
 /**
  * Created by Maxime on 04/04/2016.
+ * Used to edit the date format
  */
 public class DateEditor extends PropertyEditorSupport {
 
-    private static final String format = "yyyy/MM/dd hh:mm";
+    private static final String format = "yyyy-MM-dd";
 
     public String getAsText(){
         return getValue() != null

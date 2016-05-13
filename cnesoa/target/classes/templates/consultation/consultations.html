@@ -8,6 +8,7 @@
 
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/searchbar :: searchbar"></th:block> /*/-->
     <div class="content-wrap">
         <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
         <div th:if="${not #lists.isEmpty(consultations)}">
@@ -27,15 +28,15 @@
                     <th>Supprimer</th>
                 </tr>
                 <tr th:each="consultation : ${consultations}">
-                    <td th:text="${consultation.dateConsultation}">Date</td>
+                    <td th:text="${consultation.formatDateConsultation()}">Date</td>
                     <td th:text="${consultation.infosConsult.binome.getName()}">Binôme</td>
                     <td th:text="${consultation.infosConsult.binome.numBinome}">Numéro du binome</td>
                     <td th:text="${consultation.animal.nom}">Animal</td>
                     <td th:text="${consultation.infosConsult.professeur.getName()}">Professeur</td>
                     <td th:text="${consultation.animal.client.getName()}">Client</td>
-                    <td><a th:href="@{'/consultation/' + ${consultation.id}}">Voir</a> </td>
-                    <td><a th:href="@{'/consultation/edit/' + ${consultation.id}}">Modifier</a> </td>
-                    <td><a th:href="@{'/consultation/delete/' + ${consultation.id}}">Supprimer</a> </td>
+                    <td><nav class="cl-effect-11"><a th:href="@{'/consultation/' + ${consultation.id}}" data-hover="Voir">Voir</a> </nav></td>
+                    <td><nav class="cl-effect-11"><a th:href="@{'/consultation/edit/' + ${consultation.id}}" data-hover="Modifier">Modifier</a> </nav></td>
+                    <td><nav class="cl-effect-11"><a th:href="@{'/consultation/delete/' + ${consultation.id}}" data-hover="Supprimer">Supprimer</a> </nav></td>
                 </tr>
             </table>
         </div>

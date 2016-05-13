@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head lang="en">
     <title>Cnesoa Project Base</title>
     <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
-    <link rel="stylesheet" th:href="@{/bootstrap-calendar/css/calendar.css}"/>
-
-
+    <link rel="stylesheet" th:href="@{/js/bootstrap-calendar/css/calendar.css}"/>
 </head>
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-
+    <!--/*/ <th:block th:include="fragments/searchbar :: searchbar"></th:block> /*/-->
     <div class="content-wrap">
         <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
         <div class="page-header">
@@ -29,43 +28,44 @@
             </div>
             <h3></h3>
         </div>
-        <div id="calendar"></div>
 
-        <script type="text/javascript" th:src="@{/underscore/underscore-min.js}"></script>
-        <script type="text/javascript" th:src="@{/bootstrap-calendar/js/language/fr-FR.js}"></script>
-        <script type="text/javascript" th:src="@{/bootstrap-calendar/js/calendar.js}"></script>
-        <script type="text/javascript" th:src="@{/bootstrap-calendar/js/app.js}"></script>
-        <script type="text/javascript" th:src="@{/moment/moment.js}"></script>
+        <div id="calendar">
+        </div>
+        <script type="text/javascript" th:src="@{/js/bootstrap-calendar/js/calendar.js}"></script>
+        <script type="text/javascript" th:src="@{/js/underscore/underscore-min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/bootstrap-calendar/js/language/fr-FR.js}"></script>
+        <script type="text/javascript" th:src="@{/js/bootstrap-calendar/js/app.js}"></script>
+        <script type="text/javascript" th:src="@{/js/moment/moment.js}"></script>
         <script type="text/javascript" th:inline="javascript">
             /*<![CDATA[*/
             var calendar = $("#calendar").calendar(
                     {
                         language: 'fr-FR',
-                        tmpl_path: "/bootstrap-calendar/tmpls/",
+                        tmpl_path: "/js/bootstrap-calendar/tmpls/",
                         events_source: function () {
                             consultations = /*[[${consultations}]]*/ 'ble';
-                            if (consultations[0] != null){
-                                var array = new Array(consultations.length);
-                                for(i = 0; i < array.length; i++) {
+                            var array = new Array(consultations.length);
+                            if (consultations[0] != null) {
+                                for (i = 0; i < array.length; i++) {
                                     array[i] = {
                                         "id": consultations[i].id,
-                                        "title": "Consultation",
-                                        "url": "http://example.com",
+                                        "title": "Consultation" + " / Binôme : " + consultations[i].binome + " / Client : " +
+                                        consultations[i].proprio + " / Animal : " + consultations[i].animal,
+                                        "url": "/consultation/" + consultations[i].id,
                                         "class": "event-important",
                                         "start": consultations[i].date, // Milliseconds
                                         "end": consultations[i].date + 5400000 // Milliseconds
                                     }
                                 }
-                                return array;
                             }
-                            else {
-                                document.write("Pas de consultations");
-                            }
+                            return array;
+
                         },
                         onAfterViewLoad: function(view) {
                             $('.page-header h3').text(this.getTitle());
                             $('.btn-group button').removeClass('active');
                             $('button[data-calendar-view="' + view + '"]').addClass('active');
+                            if (view == 'day') { verifyConflictEvents();}
                         }});
             $('.btn-group button[data-calendar-nav]').each(function() {
                 var $this = $(this);
@@ -80,9 +80,23 @@
                     calendar.view($this.data('calendar-view'));
                 });
             });
+            function verifyConflictEvents() {
+                $(".pull-left.day-event.day-highlight").each(function () {
+                    var event = $(this);
+                    var schedule = $(this).children("span").html();
+                    $(this).siblings().each(function () {
+                        if ($(this).children("span").html() == schedule ) {
+                            event.css("position", "relative")
+                            return false;
+                        }
+                    });
+                });
+            }
 
             /*]]>*/
         </script>
+
+
     </div>
 </div>
 </body>
