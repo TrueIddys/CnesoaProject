@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com" xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <title>Traitement</title>
+    <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/searchbar :: searchbar"></th:block> /*/-->
+    <div class="content-wrap">
+        <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+        <h2>Traitement</h2>
+        <hr class="horizontal"/>
+        <div class="row">
+            <div class="tabs tabs-style-linebox">
+                <nav>
+                    <ul>
+                        <li><a th:href="@{'/consultation/'+${traitement.consultation.id}}"><span>CONSULTATION</span></a></li>
+                        <li><a th:href="@{'/diagnostic/'+${traitement.consultation.diagnostic.id}}"><span>DIAGNOSTIC</span></a></li>
+                        <li th:if="${traitement.consultation.diagnostic.valide}" class="tab-active"><a href="#"><span>TRAITEMENT</span></a></li>
+                        <li th:if="${traitement.valide and traitement.consultation.diagnostic.valide}"><a class="flip"><span>BILAN</span></a></li>
+                    </ul>
+                </nav>
+            </div><!-- /tabs -->
+        </div>
+        <div class="row">
+            <div class="form">
+                <form class="form-horizontal" th:action="@{'/bilan/'+${traitement.consultation.infosConsult.id}}" method="post">
+                    <div class="panelShow centered">
+                        <div class="form-group centered">
+                            <input name="codeProf" id="codeProf"
+                                   required="required" type="password" pattern="[0-9]{4}"
+                                   class="form-control court centered" placeholder="Code du professeur"/>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-default centered">Valider</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="form">
+                <form class="form-horizontal" th:object="${traitement}" th:action="@{/traitement}" method="post">
+                    <div class="row">
+                        <input type="hidden" th:field="*{id}"/>
+                        <input type="hidden" th:field="*{consultation}"/>
+                        <input type="hidden" th:field="*{valide}"/>
+                        <div class="col-md-4 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Traitements envisagés</label>
+                                <div class="col-sm-7">
+                                    <div class="radio" th:each="t, i : *{traitements}" >
+                                        <label style="padding: 0%;"><input th:readonly="${isEnabled}" type="checkbox" th:field="*{traitements[__${t.key}__]}"
+                                                                           th:value="${t.value}" th:text="${t.key}"/> </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Résultats</label>
+                                <div class="col-sm-7">
+                                    <div class="radio">
+                                        <label><input th:readonly="${isEnabled}" type="radio" value="problème résolu" th:field="*{resultat}"/> Problème résolu </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input th:readonly="${isEnabled}" type="radio" value="nécessite autre visite" th:field="*{resultat}"/> Nécessite autre visite </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input th:readonly="${isEnabled}" type="radio" value="sans amélioration" th:field="*{resultat}"/> Sans amélioration </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default btn-basdepage">Valider</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="margin-left: 20px;">
+
+                            <div class="form-group">
+                                <div>
+                                    <textarea th:readonly="${isEnabled}" rows="4" class="form-control" th:field="*{conseils}"
+                                              placeholder="Conseils donnés"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <textarea th:readonly="${isEnabled}" rows="4" class="form-control" th:field="*{details}"
+                                              placeholder="Détail du traitement"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".flip").click(function(){
+            $(".panelShow").slideToggle("slow");
+        });
+    });
+</script>
+<script th:src="@{/js/TabStylesInspiration/js/cbpFWTabs.js}"></script>
+<script type="text/javascript">
+    (function() {
+
+        [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+            new CBPFWTabs( el );
+        });
+
+    })();
+</script>
+</body>
+</html>

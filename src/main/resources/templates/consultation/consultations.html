@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head lang="en">
+    <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
+    <title>Consultations</title>
+</head>
+<body>
+
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/searchbar :: searchbar"></th:block> /*/-->
+    <div class="content-wrap">
+        <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+        <div th:if="${not #lists.isEmpty(consultations)}">
+            <h2>Consultations</h2>
+            <hr class="horizontal"/>
+
+            <table class="table">
+                <tr>
+                    <th>Date</th>
+                    <th>Binôme</th>
+                    <th>Numéro du binôme</th>
+                    <th>Nom de l'animal</th>
+                    <th>Professeur référent</th>
+                    <th>Client</th>
+                    <th>Voir</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                <tr th:each="consultation : ${consultations}">
+                    <td th:text="${consultation.formatDateConsultation()}">Date</td>
+                    <td th:text="${consultation.infosConsult.binome.getName()}">Binôme</td>
+                    <td th:text="${consultation.infosConsult.binome.numBinome}">Numéro du binome</td>
+                    <td th:text="${consultation.animal.nom}">Animal</td>
+                    <td th:text="${consultation.infosConsult.professeur.getName()}">Professeur</td>
+                    <td th:text="${consultation.animal.client.getName()}">Client</td>
+                    <td><nav class="cl-effect-11"><a th:href="@{'/consultation/' + ${consultation.id}}" data-hover="Voir">Voir</a> </nav></td>
+                    <td><nav class="cl-effect-11"><a th:href="@{'/consultation/edit/' + ${consultation.id}}" data-hover="Modifier">Modifier</a> </nav></td>
+                    <td><nav class="cl-effect-11"><a th:href="@{'/consultation/delete/' + ${consultation.id}}" data-hover="Supprimer">Supprimer</a> </nav></td>
+                </tr>
+            </table>
+        </div>
+        <div th:unless="${not   #lists.isEmpty(consultations)}">
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <div>
+                        <h3>Pas de consultations pour cet animal.</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

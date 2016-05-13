@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<div th:fragment="date">
+
+<link rel="stylesheet" type="text/css" href="../../static/datetimepicker-master/jquery.datetimepicker.css"
+      th:href="@{/datetimepicker-master/jquery.datetimepicker.css}"/>
+<script src="../../static/datetimepicker-master/jquery.js"
+        th:src="@{/datetimepicker-master/jquery.js}" ></script>
+<script src="../../static/datetimepicker-master/build/jquery.datetimepicker.full.min.js"
+        th:src="@{/datetimepicker-master/build/jquery.datetimepicker.full.min.js}"></script>
+
+<input id="datetimepicker" type="text" class="form-control court" th:field="${parameter}"/>
+<script>
+    jQuery.datetimepicker.setLocale('fr');
+    jQuery('#datetimepicker').datetimepicker();
+</script>
+</div>
+</body>
+</html>

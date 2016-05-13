@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head lang="en">
+    <title>Ajout d'un professeur</title>
+    <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/searchbar :: searchbar"></th:block> /*/-->
+    <div class="content-wrap">
+        <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+        <h2>Détails du professeur</h2>
+        <div class="form">
+            <form class="form-horizontal" th:object="${professeur}" th:action="@{/professeur}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{role}"/>
+                <input type="hidden" th:field="*{password}"/>
+                <input type="hidden" th:field="*{username}"/>
+                <input type="hidden" th:field="*{contact}"/>
+                <div class="form-group">
+                    <div class="form-error" th:if="${error != null}" th:text="${error}">Static summary</div>
+                </div>
+                <div class="form-group">
+                    <div class="">
+                        <input required="required" type="text" class="form-control court" th:field="*{contact.nom}" placeholder="Nom"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="">
+                        <input required="required" type="text" class="form-control court" th:field="*{contact.prenom}" placeholder="Prénom"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="">
+                        <input type="text" class="form-control long" th:field="*{contact.mail}" placeholder="Email"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="">
+                        <input type="tel" class="form-control court"
+                               pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$"
+                               th:field="*{contact.tel}" placeholder="Téléphone"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" style="text-align: left; padding: 0px; width: auto">Spécialité</label>
+                    <div class="col-sm-7">
+                        <div class="radio" th:each="s : *{specialite}" >
+                            <label style="padding: 0%;"><input type="checkbox" th:field="*{specialite[__${s.key}__]}"
+                                                               th:value="${s.value}" th:text="${s.key}"/> </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="">
+                        <input required="required" type="text" class="form-control court" th:field="*{matiere}" placeholder="Matière"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <button type="submit" class="btn btn-default btn-basdepage">Valider</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
