@@ -24,26 +24,35 @@
                             <td><p class="form-control-static" th:text="${binome.numBinome}">Numéro</p></td>
                         </tr>
                         <tr>
-                            <td><nav class="cl-effect-11">
+                            <td>
                                 <a th:href="@{'/eleve/'+ ${binome.eleve1.id}}"
                                    data-hover="Premier élève">Premier élève</a>
-                            </nav></td>
+                            </td>
                             <td><p class="form-control-static" th:text="${binome.eleve1.getName()}">Nom</p></td>
                         </tr>
                         <tr>
-                            <td><nav class="cl-effect-11">
+                            <td>
                                 <a th:href="@{'/eleve/'+ ${binome.eleve1.id}}"
                                    data-hover="Deuxième élève">Deuxième élève</a>
-                            </nav></td>
+                            </td>
                             <td><p class="form-control-static" th:text="${binome.eleve2.getName()}">Prenom</p></td>
                         </tr>
-                        <td><nav class="cl-effect-11"><a th:href="@{'/binome/edit/' + ${binome.id}}" data-hover="Modifier">
-                            Modifier</a> </nav></td>
-                        <td><nav class="cl-effect-11"><a th:href="@{'/binome/delete/' + ${binome.id}}" data-hover="Supprimer">
-                            Supprimer</a> </nav></td>
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="col-sm-2">
+                <li class="dropdown" style="list-style-type: none;">
+                    <button type="button" class="btn btn-default" aria-label="Justify"
+                            ><span class="glyphicon glyphicon-th-list" aria-hidden="true" style="font-size: 24px; top: 2px;">
+                            </span></button>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{'/binome/edit/' + ${binome.id}}">
+                            Modifier</a></li>
+                        <li><a th:href="@{'/binome/delete/' + ${binome.id}}">
+                            Supprimer</a></li>
+                    </ul>
+                </li>
             </div>
         </div>
     </div>

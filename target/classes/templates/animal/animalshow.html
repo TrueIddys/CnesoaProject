@@ -62,22 +62,36 @@
                     </table>
                 </div>
             </div>
-            <div class="col-md-2" style="margin-top: 20px">
-                <div class="control-group" sec:authorize="hasRole('ROLE_ADMIN')">
-                    <a class="btn btn-default" th:href="@{'/animal/' + ${animal.id}+'/edit'}">Modifier ce profil</a>
-                </div>
-                <div class="control-group" style="margin-top: 30px" sec:authorize="hasRole('ROLE_ADMIN')">
-                    <a class="btn btn-default" th:href="@{'/animal/delete/'+${animal.id}}">Supprimer ce profil</a>
-                </div>
-                <div class="control-group" style="margin-top: 30px" sec:authorize="hasRole('ROLE_ADMIN')">
-                    <a class="btn btn-default" th:href="@{'/consultations/'+${animal.id}}">Voir les consultations</a>
-                </div>
-                <div class="control-group" style="margin-top: 30px" sec:authorize="hasRole('ROLE_ADMIN')">
-                    <a class="btn btn-default" th:href="@{'/animal/' + ${animal.id} + '/consultation/new'}">Ajouter une consultation</a>
-                </div>
-                <div class="control-group" style="margin-top: 30px">
-                    <a class="btn btn-default" th:href="@{'/animal/'+${animal.id}+'/lastconsult'}">Voir la dernière consultation</a>
-                </div>
+            <!--<div class="col-md-2" style="margin-top: 20px">-->
+                <!--<div class="control-group" sec:authorize="hasRole('ROLE_ADMIN')">-->
+                    <!--<a class="btn btn-default" th:href="@{'/animal/' + ${animal.id}+'/edit'}">Modifier ce profil</a>-->
+                <!--</div>-->
+                <!--<div class="control-group" style="margin-top: 30px" sec:authorize="hasRole('ROLE_ADMIN')">-->
+                    <!--<a class="btn btn-default" th:href="@{'/animal/delete/'+${animal.id}}">Supprimer ce profil</a>-->
+                <!--</div>-->
+                <!--<div class="control-group" style="margin-top: 30px" sec:authorize="hasRole('ROLE_ADMIN')">-->
+                    <!--<a class="btn btn-default" th:href="@{'/consultations/'+${animal.id}}">Voir les consultations</a>-->
+                <!--</div>-->
+                <!--<div class="control-group" style="margin-top: 30px" sec:authorize="hasRole('ROLE_ADMIN')">-->
+                    <!--<a class="btn btn-default" th:href="@{'/animal/' + ${animal.id} + '/consultation/new'}">Ajouter une consultation</a>-->
+                <!--</div>-->
+                <!--<div class="control-group" style="margin-top: 30px">-->
+                    <!--<a class="btn btn-default" th:href="@{'/animal/'+${animal.id}+'/lastconsult'}">Voir la dernière consultation</a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="col-sm-2">
+                <li class="dropdown" style="list-style-type: none;">
+                    <button type="button" class="btn btn-default" aria-label="Justify"
+                            ><span class="glyphicon glyphicon-th-list" aria-hidden="true" style="font-size: 24px; top: 2px;">
+                            </span></button>
+                    <ul class="dropdown-menu">
+                        <li><a class="btn btn-default" th:href="@{'/animal/' + ${animal.id}+'/edit'}">Modifier ce profil</a></li>
+                        <li><a class="btn btn-default" th:href="@{'/animal/delete/'+${animal.id}}">Supprimer ce profil</a></li>
+                        <li><a class="btn btn-default" th:href="@{'/consultations/'+${animal.id}}">Voir les consultations</a></li>
+                        <li><a class="btn btn-default" th:href="@{'/animal/' + ${animal.id} + '/consultation/new'}">Ajouter une consultation</a></li>
+                        <li><a class="btn btn-default" th:href="@{'/animal/'+${animal.id}+'/lastconsult'}">Voir la dernière consultation</a></li>
+                    </ul>
+                </li>
             </div>
         </div>
     </div>

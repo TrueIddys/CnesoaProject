@@ -8,65 +8,135 @@
 <body>
 
 <div th:fragment="header">
-    <div class="menu-wrap">
-        <nav class="menu">
-            <div class="icon-list">
-                <a class="amenu" href="/">Accueil</a>
-                <a sec:authorize="hasRole('ROLE_ELEVE')" class="amenu" th:href="@{/eleve/me}">Moi</a>
-                <a sec:authorize="hasRole('ROLE_PROF')" class="amenu" th:href="@{/professeur/me}">Moi</a>
+    <!--<div class="menu-wrap">-->
+    <!--<nav class="menu">-->
+    <!--<div class="icon-list">-->
+    <!--<a class="amenu" href="/">Accueil</a>-->
+    <!--<a sec:authorize="hasRole('ROLE_ELEVE')" class="amenu" th:href="@{/eleve/me}">Moi</a>-->
+    <!--<a sec:authorize="hasRole('ROLE_PROF')" class="amenu" th:href="@{/professeur/me}">Moi</a>-->
 
-                <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown" style="list-style-type: none;">
-                    <a href="#" class="dropdown-toggle amenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Clients
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" th:href="@{/clients}">Clients</a></li>
-                        <li><a href="#" th:href="@{/client/new}">Ajouter un client</a></li>
-                    </ul>
-                </li>
-                <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown" style="list-style-type: none;">
-                    <a href="#" class="dropdown-toggle amenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Élèves
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" th:href="@{/eleves }">Élèves</a></li>
-                        <li><a href="#" th:href="@{/eleve/new}">Ajouter un élève</a></li>
-                    </ul>
-                </li>
-                <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown" style="list-style-type: none;">
-                    <a href="#" class="dropdown-toggle amenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Binomes
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" th:href="@{/binomes}">Binomes</a></li>
-                        <li><a href="#" th:href="@{/binome/new}">Ajouter un binome</a></li>
-                    </ul>
-                </li>
-                <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown" style="list-style-type: none;">
-                    <a href="#" class="dropdown-toggle amenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Professeurs
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" th:href="@{/professeurs }">Professeurs</a></li>
-                        <li><a href="#" th:href="@{/professeur/new}">Ajouter un professeur</a></li>
-                    </ul>
-                </li>
+    <!--<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown" style="list-style-type: none;">-->
+    <!--<a href="#" class="dropdown-toggle amenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
+    <!--Clients-->
+    <!--</a>-->
+    <!--<ul class="dropdown-menu">-->
+    <!--<li><a href="#" th:href="@{/clients}">Clients</a></li>-->
+    <!--<li><a href="#" th:href="@{/client/new}">Ajouter un client</a></li>-->
+    <!--</ul>-->
+    <!--</li>-->
+    <!--<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown" style="list-style-type: none;">-->
+    <!--<a href="#" class="dropdown-toggle amenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
+    <!--Élèves-->
+    <!--</a>-->
+    <!--<ul class="dropdown-menu">-->
+    <!--<li><a href="#" th:href="@{/eleves }">Élèves</a></li>-->
+    <!--<li><a href="#" th:href="@{/eleve/new}">Ajouter un élève</a></li>-->
+    <!--</ul>-->
+    <!--</li>-->
+    <!--<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown" style="list-style-type: none;">-->
+    <!--<a href="#" class="dropdown-toggle amenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
+    <!--Binomes-->
+    <!--</a>-->
+    <!--<ul class="dropdown-menu">-->
+    <!--<li><a href="#" th:href="@{/binomes}">Binomes</a></li>-->
+    <!--<li><a href="#" th:href="@{/binome/new}">Ajouter un binome</a></li>-->
+    <!--</ul>-->
+    <!--</li>-->
+    <!--<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown" style="list-style-type: none;">-->
+    <!--<a href="#" class="dropdown-toggle amenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
+    <!--Professeurs-->
+    <!--</a>-->
+    <!--<ul class="dropdown-menu">-->
+    <!--<li><a href="#" th:href="@{/professeurs }">Professeurs</a></li>-->
+    <!--<li><a href="#" th:href="@{/professeur/new}">Ajouter un professeur</a></li>-->
+    <!--</ul>-->
+    <!--</li>-->
 
-                <a class="amenu" sec:authorize="isAuthenticated()" href="/logout">
-                    Se déconnecter
-                </a>
-                <a class="amenu" sec:authorize="isAnonymous()" href="/login">
-                    Se connecter
-                </a>
+    <!--<a class="amenu" sec:authorize="isAuthenticated()" href="/logout">-->
+    <!--Se déconnecter-->
+    <!--</a>-->
+    <!--<a class="amenu" sec:authorize="isAnonymous()" href="/login">-->
+    <!--Se connecter-->
+    <!--</a>-->
 
-            </div>
-        </nav>
-        <button class="close-button" id="close-button">Close Menu</button>
-    </div>
-    <button class="menu-button" id="open-button">Open Menu</button>
+    <!--</div>-->
+    <!--</nav>-->
+    <!--<button class="close-button" id="close-button">Close Menu</button>-->
+    <!--</div>-->
+    <!--<button class="menu-button" id="open-button">Open Menu</button>-->
     <script th:src="@{/js/OffCanvasMenuEffects/js/classie.js}"></script>
     <script th:src="@{/js/OffCanvasMenuEffects/js/main.js}"></script>
 
+    <nav class="navbar navbar-default navbar-fixed-top">
+
+        <div class="container">
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="amenu" href="/">Accueil</a>
+                    </li>
+                    <li><a sec:authorize="hasRole('ROLE_ELEVE')" class="amenu" th:href="@{/eleve/me}">Moi</a></li>
+                    <li><a sec:authorize="hasRole('ROLE_PROF')" class="amenu" th:href="@{/professeur/me}">Moi</a></li>
+
+                    <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown" style="list-style-type: none;">
+                        <a href="#" class="dropdown-toggle amenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Clients
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" th:href="@{/clients}">Clients</a></li>
+                            <li><a href="#" th:href="@{/client/new}">Ajouter un client</a></li>
+                        </ul>
+                    </li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown" style="list-style-type: none;">
+                        <a href="#" class="dropdown-toggle amenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Élèves
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" th:href="@{/eleves }">Élèves</a></li>
+                            <li><a href="#" th:href="@{/eleve/new}">Ajouter un élève</a></li>
+                        </ul>
+                    </li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown" style="list-style-type: none;">
+                        <a href="#" class="dropdown-toggle amenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Binomes
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" th:href="@{/binomes}">Binomes</a></li>
+                            <li><a href="#" th:href="@{/binome/new}">Ajouter un binome</a></li>
+                        </ul>
+                    </li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown" style="list-style-type: none;">
+                        <a href="#" class="dropdown-toggle amenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Professeurs
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" th:href="@{/professeurs }">Professeurs</a></li>
+                            <li><a href="#" th:href="@{/professeur/new}">Ajouter un professeur</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a class="amenu" sec:authorize="isAuthenticated()" href="/logout">
+                        Se déconnecter
+                    </a></li>
+                    <li><a class="amenu" sec:authorize="isAnonymous()" href="/login">
+                        Se connecter
+                    </a></li>
+                </ul>
+                <form class="navbar-form navbar-fixed-top" style="width: 50%; margin-left: auto" role="search"
+                      th:action="@{/search}">
+                    <div class="navbar-right" style="margin-right: 15px;">
+                        <div class="form-group">
+                            <input type="text" id="search" name="search" class="form-control" placeholder="Chercher"/>
+                        </div>
+                        <button type="submit" class="btn glyphicon glyphicon-search"
+                                style="top: 0; color: #a94442;">
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </nav>
 
 </div>
 
