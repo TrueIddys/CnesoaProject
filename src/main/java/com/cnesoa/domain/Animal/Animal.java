@@ -32,11 +32,11 @@ public class Animal implements Serializable, Comparable<Animal> {
     @Field(index = org.hibernate.search.annotations.Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String nom;
 
-    //race de l'animal (chien, chat etc...)
+    //race de l'animal (berger allemand, labrador etc ...)
     @Field(index = org.hibernate.search.annotations.Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String race;
 
-    //type de l'animal (berger allemand, labrador etc ...)
+    //type de l'animal (chien, chat etc...)
     @Field(index = org.hibernate.search.annotations.Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String type;
 

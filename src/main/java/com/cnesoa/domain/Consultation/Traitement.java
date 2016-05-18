@@ -1,5 +1,10 @@
 package com.cnesoa.domain.Consultation;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+
 import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +14,7 @@ import java.util.Map;
  */
 
 @Entity
+@Indexed
 public class Traitement {
 
     @Id
@@ -20,18 +26,20 @@ public class Traitement {
     private Map<String, Boolean> traitements = new HashMap<>();
 
     //détails du traitement
+    @Field(index = org.hibernate.search.annotations.Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String details;
 
     //résultat de la consultation
     private String resultat;
 
+    @Field(index = org.hibernate.search.annotations.Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String conseils;
 
     //validation du traitement
     private Boolean valide;
 
     //consultation liée au traitement
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Consultation consultation;
 
     /*_____________________________________*/

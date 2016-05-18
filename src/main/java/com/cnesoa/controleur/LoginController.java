@@ -19,7 +19,7 @@ public class LoginController {
     public String getLoginPage(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
-            return "redirect://";
+            return "redirect:/";
         }
         else
             return "login";

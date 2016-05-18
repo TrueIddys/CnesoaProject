@@ -3,7 +3,7 @@ a {
 }
 
 .amenu:hover{
-    color: #2CC185 !important;
+    color: #A94442 !important;
     -webkit-transition: all .45s !important;
     transition: all .45s !important;
 }
@@ -107,6 +107,10 @@ input.long {
     width: 70%;
 }
 
+input.email {
+    width: 40%;
+}
+
 label.control-label {
     padding-bottom: 5px;
 
@@ -183,7 +187,8 @@ textarea.form-control {
     width: 100%;
 }
 
-table {
+.table {
+    width: auto !important;
     margin-bottom: 0px;
 }
 
@@ -215,9 +220,9 @@ ________________________*/
 
 /*Calendar*/
 #calendar.cal-context {
-    width: 80% !important;
     margin: auto;
     margin-bottom: 20px;
+    /*//TODO travailler sur l'échelle du calendrier*/
 }
 
 /*Bootstrap*/
@@ -238,8 +243,8 @@ ________________________*/
 }
 
 .btn-default:hover{
-    background-color: #32BB81;
-    border-color: #32BB81;
+    background-color: #A94442;
+    border-color: #A94442;
 }
 
 .btn:hover {
@@ -255,6 +260,10 @@ ________________________*/
 .form-control:focus {
     background-color: #ffffff;
     color: #747474;
+}
+
+.form-control[disabled] {
+    color: #000000;
 }
 
 .radio {

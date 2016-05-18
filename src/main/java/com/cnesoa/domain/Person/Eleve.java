@@ -2,9 +2,11 @@ package com.cnesoa.domain.Person;
 
 import com.cnesoa.domain.Binome;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * Created by Maxime on 05/04/2016.
@@ -15,9 +17,10 @@ import java.util.Objects;
 public class Eleve extends User implements Serializable {
 
     //le binome de l'élève
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Binome binome;
-    //TODO implémenter le changement de binome (mi année)
+    //TODO réfléchir à la possibilité d'avoir plusieurs binomes avec les mêmes élèves, car
+    //il faut enregistrer les notes des élèves lors de consultations avec un binome plus existant
 
     /*_______________________*/
 

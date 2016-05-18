@@ -17,7 +17,7 @@
             <form class="form-horizontal" th:object="${eleve}" th:action="@{/eleve}" method="post">
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{role}"/>
-                <input type="hidden" th:field="*{password}"/>
+                <input type="hidden" th:field="*{passwordHash}"/>
                 <input type="hidden" th:field="*{username}"/>
                 <input type="hidden" th:field="*{contact}"/>
                 <div class="form-group">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <div class="">
-                        <input type="text" class="form-control long" th:field="*{contact.mail}" placeholder="Email"/>
+                        <input type="text" class="form-control email" th:field="*{contact.mail}" placeholder="Email"/>
                     </div>
                 </div>
                 <div class="form-group">

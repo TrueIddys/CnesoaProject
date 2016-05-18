@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.com" xmlns="http://www.w3.org/1999/html">
 <head lang="en">
-    <title>Fiche médicale</title>
+    <title th:text="'Fiche médical de '+${ficheMedicale.animal.nom}"></title>
     <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
     </head>
 <body>

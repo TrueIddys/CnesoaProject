@@ -33,7 +33,7 @@ public class BilanController {
     /*____________________________________________________________*/
 
     @RequestMapping("bilan/{bilanId}")
-    public String goToBilan(@RequestParam("codeProf") String codeProf, @PathVariable Long bilanId, Model model) {
+    public String goToBilan(@RequestParam(value = "codeProf", required = false) String codeProf, @PathVariable Long bilanId, Model model) {
         if (!infosConsultManager.getInfosConsultById(bilanId).getConsultation().getDiagnostic().getValide() &&
                 !infosConsultManager.getInfosConsultById(bilanId).getConsultation().getTraitement().getValide()) {
             throw new AccessDeniedException("Vous ne pouvez pas accéder au bilan" +

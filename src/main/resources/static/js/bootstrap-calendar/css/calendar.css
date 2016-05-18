@@ -254,6 +254,7 @@
   border-bottom: 15px solid transparent;
 }
 #cal-day-box {
+  overflow-x: scroll;
   text-wrap: none;
 }
 #cal-day-box .cal-day-hour-part {
@@ -267,12 +268,14 @@
   height: 30px;
 }
 #cal-day-box .cal-hours {
+  display: none;
   font-weight: bolder;
 }
 #cal-day-box .cal-day-hour:nth-child(odd) {
 }
 
 #cal-day-box #cal-day-panel {
+  width: 200%;
   position: relative;
   padding-left: 60px;
 }

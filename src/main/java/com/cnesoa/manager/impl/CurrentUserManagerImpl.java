@@ -34,7 +34,7 @@ public class CurrentUserManagerImpl implements CurrentUserManager {
    /*_________________________________________________*/
 
     /**
-     * check if the current user has right to access the page of user X
+     * check if the current user has right to access the page of himself
      * @param currentUser
      * @param userId the id of user X
      * @return

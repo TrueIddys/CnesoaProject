@@ -1,6 +1,7 @@
 package com.cnesoa.manager.Person;
 
 import com.cnesoa.domain.Consultation.Consultation;
+import com.cnesoa.domain.Consultation.InfosConsult;
 import com.cnesoa.domain.Person.Eleve;
 
 /**
@@ -19,6 +20,12 @@ public interface EleveManager {
     void deleteEleve(Long id);
 
     Iterable<Consultation> getListConsultations(Long id);
+
+    Iterable<InfosConsult> getListInfosConsult(Long id);
+
+    String moyenneDiag(Long id);
+
+    String moyenneTrait(Long id);
 
     Boolean checkLienAnimal(Long animalId, Long eleveId);
 

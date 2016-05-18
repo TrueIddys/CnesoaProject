@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title>Professeur</title>
+    <title th:text="${professeur.getName()}"></title>
     <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
 </head>
 <body>
@@ -16,10 +16,6 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="table-responsive">
                     <table class="table">
-                        <thead>
-                        <th> </th>
-                        <th> </th>
-                        </thead>
                         <tbody>
                         <tr>
                             <td><label>Nom</label></td>
@@ -51,14 +47,19 @@
                             <td><label>Matière</label></td>
                             <td><p class="form-control-static" th:text="${professeur.matiere}">Matière</p> </td>
                         </tr>
-                        <td><nav class="cl-effect-11"><a th:href="@{'/professeur/edit/' + ${professeur.id}}" data-hover="Modifier">
-                            Modifier</a> </nav></td>
-                        <td><nav sec:authorize="hasRole('ROLE_ADMIN')" class="cl-effect-11">
-                            <a th:href="@{'/professeur/delete/' + ${professeur.id}}" data-hover="Supprimer">
-                            Supprimer</a>
-                        </nav></td>
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class="col-md-2" style="margin-top: 20px">
+                <div class="control-group" style="margin-top: 30px">
+                    <a class="btn btn-default" th:href="@{'/professeur/edit/' + ${professeur.id}}">Modifier</a>
+                </div>
+                <div class="control-group" style="margin-top: 30px" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a class="btn btn-default" th:href="@{'/professeur/delete/' + ${professeur.id}}">Supprimer</a>
+                </div>
+                <div class="control-group" style="margin-top: 30px">
+                    <a class="btn btn-default" th:href="@{'/password'}">Modifier mot de passe</a>
                 </div>
             </div>
         </div>

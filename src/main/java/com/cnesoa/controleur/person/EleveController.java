@@ -1,6 +1,7 @@
 package com.cnesoa.controleur.person;
 
 import com.cnesoa.domain.Person.Eleve;
+import com.cnesoa.manager.CurrentUserManager;
 import com.cnesoa.manager.Person.Contact.ContactManager;
 import com.cnesoa.manager.Person.EleveManager;
 import com.cnesoa.utils.CurrentUser;
@@ -29,6 +30,9 @@ public class EleveController {
     @Autowired
     private EleveManager eleveManager;
 
+    @Autowired
+    private CurrentUserManager currentUserManager;
+
 
     /*___________________________________*/
 
@@ -43,6 +47,8 @@ public class EleveController {
     @RequestMapping("eleve/me")
     public String goToEleveMe(Model model, Authentication authentication){
         model.addAttribute("eleve", eleveManager.getEleveById(((CurrentUser)authentication.getPrincipal()).getId()));
+        model.addAttribute("isNotAdmin", true);
+        model.addAttribute("heures", eleveManager.numberOfConsultHours(((CurrentUser)authentication.getPrincipal()).getId()));
         return "eleve/eleveshow";
     }
 
@@ -67,11 +73,14 @@ public class EleveController {
         return "redirect:/eleve/" + eleve.getId();
     }
 
-    @PreAuthorize("@currentUserManagerImpl.canAccessUser(principal, #id)")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @RequestMapping("eleve/{id}")
     public String showEleve(@PathVariable Long id, Model model){
         model.addAttribute("eleve", eleveManager.getEleveById(id));
         model.addAttribute("heures", eleveManager.numberOfConsultHours(id));
+        model.addAttribute("moyDiag", eleveManager.moyenneDiag(id));
+        model.addAttribute("moyTrait", eleveManager.moyenneTrait(id));
+        model.addAttribute("isNotAdmin", false);
         return "eleve/eleveshow";
     }
 
@@ -94,5 +103,12 @@ public class EleveController {
     public String delete(@PathVariable Long id){
         eleveManager.deleteEleve(id);
         return "redirect:/eleves";
+    }
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @RequestMapping("eleve/detailnotes/{id}")
+    public String goToDetailsNote(@PathVariable Long id, Model model){
+        model.addAttribute("name", eleveManager.getEleveById(id).getName());
+        model.addAttribute("infosConsults", eleveManager.getListInfosConsult(id));
+        return "eleve/detailnotes";
     }
 }

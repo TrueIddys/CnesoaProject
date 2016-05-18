@@ -10,6 +10,7 @@ import com.cnesoa.manager.BinomeManager;
 import com.cnesoa.manager.Consultation.ConsultationManager;
 import com.cnesoa.manager.CurrentUserManager;
 import com.cnesoa.manager.Person.ProfesseurManager;
+import com.cnesoa.utils.Role;
 import com.cnesoa.validator.ConsultationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
@@ -79,8 +80,12 @@ public class ConsultationController {
 
     @RequestMapping("consultation/{id}")
     public String showConsultation(@PathVariable Long id, Model model){
+        Boolean isNotAdmin = false;
         if (currentUserManager.checkConsultation(id)){
+            if (currentUserManager.getUser().getRole() != Role.ROLE_ADMIN)
+                isNotAdmin = true;
             model.addAttribute("consultation", consultationManager.getConsultationById(id));
+            model.addAttribute("isNotAdmin", isNotAdmin);
             return "consultation/consultationshow";
         }
         else

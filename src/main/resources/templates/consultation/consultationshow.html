@@ -42,10 +42,6 @@
             <div class="col-md-4 col-md-offset-3">
                 <div class="table-responsive">
                     <table class="table">
-                        <thead>
-                        <th> </th>
-                        <th> </th>
-                        </thead>
                         <tbody>
                         <tr>
                             <td><label>Date</label></td>
@@ -53,7 +49,8 @@
                         </tr>
                         <tr th:if="${consultation.infosConsult.binome != null}">
                             <td><nav class="cl-effect-11">
-                                <a th:href="@{'/binome/'+${consultation.infosConsult.binome.id}}" data-hover="Binôme">
+                                <a  th:remove="${isNotAdmin}? tag"
+                                        th:href="@{'/binome/'+${consultation.infosConsult.binome.id}}" data-hover="Binôme">
                                     Binôme</a></nav></td>
                             <td><p class="form-control-static" th:text="${consultation.infosConsult.binome.getName()}">Binome</p></td>
                         </tr>
@@ -68,14 +65,16 @@
                         </tr>
                         <tr th:if="${consultation.infosConsult.professeur != null}">
                             <td><nav class="cl-effect-11">
-                                <a th:href="@{'/professeur/'+${consultation.infosConsult.professeur.id}}" data-hover="Professeur">
+                                <a th:remove="${isNotAdmin}? tag"
+                                   th:href="@{'/professeur/'+${consultation.infosConsult.professeur.id}}" data-hover="Professeur">
                                     Professeur</a></nav></td>
                             <td><p class="form-control-static" th:text="${consultation.infosConsult.professeur.getName()}">Professeur</p> </td>
                         </tr>
                         <tr>
                             <td>
                                 <nav class="cl-effect-11">
-                                <a th:href="@{'/client/'+${consultation.animal.client.id}}" data-hover="Client">
+                                <a th:remove="${isNotAdmin}? tag"
+                                   th:href="@{'/client/'+${consultation.animal.client.id}}" data-hover="Client">
                                 Client</a>
                                 </nav>
                             </td>

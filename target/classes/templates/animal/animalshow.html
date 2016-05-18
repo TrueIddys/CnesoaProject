@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title>Animals</title>
+    <title th:text="${animal.nom}"></title>
     <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
 
 </head>
@@ -24,26 +24,22 @@
                 </nav>
             </div><!-- /tabs -->
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 20px;">
             <div class="col-md-4 col-md-offset-3">
                 <div class="table-responsive">
                     <table class="table">
-                        <thead>
-                        <th> </th>
-                        <th> </th>
-                        </thead>
                         <tbody>
                         <tr>
                             <td><label>Nom</label></td>
                             <td><p class="form-control-static" th:text="${animal.nom}">Nom</p></td>
                         </tr>
                         <tr>
-                            <td><label>Race</label></td>
-                            <td><p class="form-control-static" th:text="${animal.race}">Race</p></td>
-                        </tr>
-                        <tr>
                             <td><label>Type</label></td>
                             <td><p class="form-control-static" th:text="${animal.type}">Type</p></td>
+                        </tr>
+                        <tr>
+                            <td><label>Race</label></td>
+                            <td><p class="form-control-static" th:text="${animal.race}">Race</p></td>
                         </tr>
                         <tr>
                             <td><label>Robe</label></td>
@@ -55,7 +51,8 @@
                         </tr>
                         <tr>
                             <td><nav class="cl-effect-11">
-                                <a th:href="@{'/client/'+ ${animal.client.id}}"
+                                <a th:remove="${isNotAdmin}? tag"
+                                   th:href="@{'/client/'+ ${animal.client.id}}"
                                         data-hover="Propriétaire">Propriétaire</a>
                                 </nav>
                             </td>

@@ -2,7 +2,9 @@ package com.cnesoa.repository.search;
 
 import com.cnesoa.domain.Animal.Animal;
 import com.cnesoa.domain.Consultation.Diagnostic;
+import com.cnesoa.domain.Consultation.Traitement;
 import com.cnesoa.domain.Person.Client;
+import com.cnesoa.domain.Person.Contact.Adresse;
 import com.cnesoa.domain.Person.Contact.Contact;
 import com.cnesoa.domain.Person.Eleve;
 import com.cnesoa.domain.Person.Professeur;
@@ -47,6 +49,10 @@ public class UserSearch {
                 text, fullTextEntityManager).getResultList());
         results.add(setUpJpaQuery(new String[]{"nom", "prenom", "mail", "tel"}, Contact.class,
                 text, fullTextEntityManager).getResultList());
+        results.add(setUpJpaQuery(new String[]{"rue", "ville", "codePostal"}, Adresse.class,
+                text, fullTextEntityManager).getResultList());
+        results.add(setUpJpaQuery(new String[]{"details", "conseils"}, Traitement.class,
+                text, fullTextEntityManager).getResultList());
 
         return results;
     }
@@ -82,6 +88,10 @@ public class UserSearch {
                 resultsAnimaux.add(d.getConsultation().getAnimal());
             }
         }
+        if (!results.get(4).equals(Collections.EMPTY_LIST))
+            for (Traitement t : (List<Traitement>)results.get(4)){
+                resultsAnimaux.add(t.getConsultation().getAnimal());
+            }
         return resultsAnimaux;
     }
 
@@ -96,6 +106,11 @@ public class UserSearch {
             for (Contact c : (List<Contact>)results.get(2)){
                 if (c.getPerson().getClass().equals(Client.class))
                     resultsClients.add((Client)c.getPerson());
+            }
+        }
+        if (!results.get(3).equals(Collections.EMPTY_LIST)){
+            for (Adresse a : (List<Adresse>)results.get(3)){
+                resultsClients.add(a.getClient());
             }
         }
         return resultsClients;

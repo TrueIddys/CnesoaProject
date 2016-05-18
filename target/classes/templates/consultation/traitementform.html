@@ -28,7 +28,7 @@
             <div class="form">
                 <form class="form-horizontal" th:action="@{'/bilan/'+${traitement.consultation.infosConsult.id}}" method="post">
                     <div class="panelShow centered">
-                        <div class="form-group centered">
+                        <div class="form-group centered" sec:authorize="hasAnyRole('ROLE_PROF', 'ROLE_ELEVE')">
                             <input name="codeProf" id="codeProf"
                                    required="required" type="password" pattern="[0-9]{4}"
                                    class="form-control court centered" placeholder="Code du professeur"/>

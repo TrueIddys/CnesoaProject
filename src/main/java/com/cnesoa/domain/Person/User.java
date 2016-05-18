@@ -46,11 +46,11 @@ public class User extends Person{
         this.username = username;
     }
 
-    public String getPassword() {
+    public String getPasswordHash() {
         return passwordHash;
     }
 
-    public void setPassword(String password) {
+    public void setPasswordHash(String password) {
         this.passwordHash = new BCryptPasswordEncoder().encode(password);
     }
 

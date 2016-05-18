@@ -34,7 +34,7 @@ public class Contact {
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String prenom;
 
-    //personne lié aux informations de contact
+    //personne liée aux informations de contact
     @OneToOne
     private Person person;
 

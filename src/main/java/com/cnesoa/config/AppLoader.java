@@ -148,19 +148,114 @@ public class AppLoader implements ApplicationListener<ContextRefreshedEvent>{
         Consultation cons1 = new Consultation();
         cons1.setDateConsultation(c.getTime());
         cons1.setAnimal(animal1);
-        cons1.getInfosConsult().setBinome(bin1);
+        cons1.getInfosConsult().setBinome(bin2);
         cons1.getInfosConsult().setProfesseur(prof1);
         cons1 = consultationManager.saveConsultation(cons1);
 
-        c.add(Calendar.DATE, 2);
-        c.add(Calendar.HOUR, 1);
+        Consultation cons6 = new Consultation();
+        cons6.setDateConsultation(c.getTime());
+        cons6.setAnimal(animal1);
+        cons6.getInfosConsult().setBinome(bin1);
+        cons6.getInfosConsult().setProfesseur(prof1);
+        cons6 = consultationManager.saveConsultation(cons6);
 
-        Consultation cons2 = new Consultation();
-        cons2.setDateConsultation(c.getTime());
-        cons2.setAnimal(animal2);
-        cons2.getInfosConsult().setBinome(bin2);
-        cons2.getInfosConsult().setProfesseur(prof2);
-        cons2 = consultationManager.saveConsultation(cons2);
+        Consultation cons7 = new Consultation();
+        cons7.setDateConsultation(c.getTime());
+        cons7.setAnimal(animal1);
+        cons7.getInfosConsult().setBinome(bin1);
+        cons7.getInfosConsult().setProfesseur(prof2);
+        cons7 = consultationManager.saveConsultation(cons7);
+
+        Consultation cons8 = new Consultation();
+        cons8.setDateConsultation(c.getTime());
+        cons8.setAnimal(animal1);
+        cons8.getInfosConsult().setBinome(bin2);
+        cons8.getInfosConsult().setProfesseur(prof2);
+        cons8 = consultationManager.saveConsultation(cons8);
+
+        Consultation cons9 = new Consultation();
+        cons9.setDateConsultation(c.getTime());
+        cons9.setAnimal(animal2);
+        cons9.getInfosConsult().setBinome(bin1);
+        cons9.getInfosConsult().setProfesseur(prof1);
+        cons9 = consultationManager.saveConsultation(cons9);
+
+        Consultation cons10 = new Consultation();
+        cons10.setDateConsultation(c.getTime());
+        cons10.setAnimal(animal2);
+        cons10.getInfosConsult().setBinome(bin1);
+        cons10.getInfosConsult().setProfesseur(prof2);
+        cons10 = consultationManager.saveConsultation(cons10);
+
+        Consultation cons11 = new Consultation();
+        cons11.setDateConsultation(c.getTime());
+        cons11.setAnimal(animal2);
+        cons11.getInfosConsult().setBinome(bin2);
+        cons11.getInfosConsult().setProfesseur(prof1);
+        cons11 = consultationManager.saveConsultation(cons11);
+
+        Consultation cons12 = new Consultation();
+        cons12.setDateConsultation(c.getTime());
+        cons12.setAnimal(animal2);
+        cons12.getInfosConsult().setBinome(bin2);
+        cons12.getInfosConsult().setProfesseur(prof2);
+        cons12 = consultationManager.saveConsultation(cons12);
+
+        c.add(Calendar.DATE, -36);
+
+        Consultation cons3 = new Consultation();
+        cons3.setDateConsultation(c.getTime());
+        cons3.setAnimal(animal2);
+        cons3.getInfosConsult().setBinome(bin1);
+        cons3.getInfosConsult().setProfesseur(prof2);
+        cons3.setMotif("Visite : bilan, pleure parfois quand prise sous le ventre");
+        cons3.getDiagnostic().setDouleur("sphère viscérale");
+        cons3.getDiagnostic().setDynamique("rachis en 2 partie à L3/L4");
+        cons3.getDiagnostic().setPalpatoire("intestins, diaphragme");
+        cons3.getDiagnostic().setDiagnosticText("intestins = GI (+ système digestif global), diaphragme, foie");
+        cons3.getDiagnostic().setValide(true);
+        cons3.getTraitement().setDetails("Crane sacré : rééquilibrage NRP /n" +
+                "TOG : rachis, sternum /n" +
+                "Viscéral : intestion (GI+++) + sphère digestive/n" +
+                "Tumilaire : diaphragme (+ mécanique) /n" +
+                "Myotensif : rachis (avec antérieur et postérieur) /n" +
+                "Massages + palpe roulé") ;
+        cons3.getTraitement().setResultat("nécessite autre visite");
+        cons3.getTraitement().setConseils("continuer les massages et le palpe roulé, éviter de la pate " +
+                "en le prenant sous le ventre pendant 24-48h, prochaine visite dans 1 Mois");
+        cons3.getTraitement().setValide(true);
+        cons3.getInfosConsult().setNoteDiag(4);
+        cons3.getInfosConsult().setNoteTrait(3);
+        cons3 = consultationManager.saveConsultation(cons3);
+
+        c.add(Calendar.DATE, 25);
+
+        Consultation cons4 = new Consultation();
+        cons4.setDateConsultation(c.getTime());
+        cons4.setAnimal(animal2);
+        cons4.getInfosConsult().setBinome(bin1);
+        cons4.getInfosConsult().setProfesseur(prof1);
+        cons4.setMotif("Visite de suivi");
+        cons4.getDiagnostic().setDouleur("reins, sphère viscérale");
+        cons4.getDiagnostic().setDynamique("bassin décalé à droite," +
+                "bloc lambaire immobile");
+        cons4.getDiagnostic().setPalpatoire("reins gauche +++, bloc lombaire, tensons des psoas, rein droit");
+        cons4.getDiagnostic().setDiagnosticText("reins tractent l'ensemble de la sphère digestive vers dorsal," +
+                "rein gauche et glande surrénale gauche plus dense," +
+                "psoas spasmés");
+        cons4.getDiagnostic().setValide(true);
+        cons4.getTraitement().setDetails("viscéral : reins (gche+++) et glandes surrehales," +
+                "stretching des muscles psoas," +
+                "réharmonisation de l'axe cranio-sacré") ;
+        cons4.getTraitement().setResultat("nécessite autre visite");
+        cons4.getTraitement().setConseils("continuer les massages et le palper rouler," +
+                "eviter de la porter sous le ventre," +
+                "si possible, faire boire caline pour drainer les reins," +
+                "autre visite pour continuer le travail sur les reins (septembre)");
+        cons4.getTraitement().setValide(true);
+        cons4.getInfosConsult().setNoteDiag(5);
+        cons4.getInfosConsult().setNoteTrait(4);
+        cons4 = consultationManager.saveConsultation(cons4);
 
         User user1 = new User();
         user1.getContact().setPrenom("ad");

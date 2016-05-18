@@ -22,11 +22,11 @@ public class Binome implements Serializable, Comparable<Binome>{
     private Integer numBinome;
 
     //1er élève du binome
-    @ManyToOne
+    @OneToOne
     private Eleve eleve1;
 
     //2ème élève du binome
-    @ManyToOne
+    @OneToOne
     private Eleve eleve2;
 
     //liste des consultations liées au binome

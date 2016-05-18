@@ -47,6 +47,9 @@ public class ClientManagerImpl implements ClientManager {
         if (client.getCotisation() == Cotisation.tarifHaut &&
                 client.getDebutCotisation() == null)
             client.setDebutCotisation(Date.from(Instant.now()));
+        if (client.getId() == null){
+            client.getContact().setPerson(client);
+        }
         return clientRepository.save(client);
     }
 

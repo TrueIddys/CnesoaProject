@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title>Binôme</title>
+    <title th:text="${binome.getName()}"></title>
     <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
 </head>
 <body>
@@ -18,21 +18,23 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="table-responsive">
                     <table class="table">
-                        <thead>
-                        <th> </th>
-                        <th> </th>
-                        </thead>
                         <tbody>
                         <tr>
                             <td><label>Numéro</label></td>
                             <td><p class="form-control-static" th:text="${binome.numBinome}">Numéro</p></td>
                         </tr>
                         <tr>
-                            <td><label>Premier élève</label></td>
+                            <td><nav class="cl-effect-11">
+                                <a th:href="@{'/eleve/'+ ${binome.eleve1.id}}"
+                                   data-hover="Premier élève">Premier élève</a>
+                            </nav></td>
                             <td><p class="form-control-static" th:text="${binome.eleve1.getName()}">Nom</p></td>
                         </tr>
                         <tr>
-                            <td><label>Deuxième élève</label></td>
+                            <td><nav class="cl-effect-11">
+                                <a th:href="@{'/eleve/'+ ${binome.eleve1.id}}"
+                                   data-hover="Deuxième élève">Deuxième élève</a>
+                            </nav></td>
                             <td><p class="form-control-static" th:text="${binome.eleve2.getName()}">Prenom</p></td>
                         </tr>
                         <td><nav class="cl-effect-11"><a th:href="@{'/binome/edit/' + ${binome.id}}" data-hover="Modifier">

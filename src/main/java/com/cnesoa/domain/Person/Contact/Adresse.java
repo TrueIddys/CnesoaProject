@@ -3,6 +3,7 @@ package com.cnesoa.domain.Person.Contact;
 import com.cnesoa.domain.Person.Client;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
+import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
 import java.util.regex.Matcher;
@@ -13,6 +14,7 @@ import java.util.regex.Pattern;
  */
 
 @Entity
+@Indexed
 public class Adresse {
 
     @Id
@@ -20,11 +22,14 @@ public class Adresse {
     private Long id;
 
     private String numero;
-    
+
+    @Field(index = org.hibernate.search.annotations.Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String rue;
 
+    @Field(index = org.hibernate.search.annotations.Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String ville;
 
+    @Field(index = org.hibernate.search.annotations.Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String codePostal;
 
     @OneToOne

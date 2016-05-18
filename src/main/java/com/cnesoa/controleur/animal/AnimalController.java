@@ -7,6 +7,7 @@ import com.cnesoa.exceptions.NullObjectException;
 import com.cnesoa.manager.Animal.AnimalManager;
 import com.cnesoa.manager.CurrentUserManager;
 import com.cnesoa.manager.Person.ClientManager;
+import com.cnesoa.utils.Role;
 import com.cnesoa.validator.AnimalValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
@@ -81,8 +82,12 @@ public class AnimalController {
 
     @RequestMapping("animal/{id}")
     public String showAnimal(@PathVariable Long id, Model model){
+        Boolean isNotAdmin = false;
         if (currentUserManager.checkAnimal(id)) {
+            if (currentUserManager.getUser().getRole() != Role.ROLE_ADMIN)
+                isNotAdmin = true;
             model.addAttribute("animal", animalManager.getAnimalById(id));
+            model.addAttribute("isNotAdmin", isNotAdmin);
             return "animal/animalshow";
         }
         else

@@ -16,7 +16,7 @@
             <h2>Clients</h2>
             <hr class="horizontal"/>
 
-            <table class="table">
+            <table class="table centered">
                 <tr>
                     <th>Nom</th>
                     <th>Prenom</th>
@@ -49,7 +49,7 @@
             <h2>Élèves</h2>
             <hr class="horizontal"/>
 
-            <table class="table">
+            <table class="table centered">
                 <tr>
                     <th>Nom</th>
                     <th>Prénom</th>
@@ -72,7 +72,7 @@
         </div>
         <div th:if="${not #lists.isEmpty(professeurs)}">
             <h2>Professeurs</h2>
-            <table class="table">
+            <table class="table centered">
                 <tr>
                     <th>Nom</th>
                     <th>Prénom</th>
@@ -97,11 +97,11 @@
             <h2>Animaux </h2>
             <hr class="horizontal"/>
 
-            <table class="table">
+            <table class="table centered">
                 <tr>
                     <th>Nom</th>
-                    <th>Race</th>
                     <th>Type</th>
+                    <th>Race</th>
                     <th>Robe</th>
                     <th>Sexe</th>
                     <th>Propriétaire</th>
@@ -124,7 +124,8 @@
         </div>
 
 
-        <div class="centered" th:if="${#lists.isEmpty(animaux) and #lists.isEmpty(clients)}">
+        <div class="centered" th:if="${#lists.isEmpty(animaux) and #lists.isEmpty(clients)
+                    and #lists.isEmpty(eleves) and #lists.isEmpty(professeurs)}">
             <p class="centered">Pas de résultats pour cette recherche.</p>
         </div>
     </div>

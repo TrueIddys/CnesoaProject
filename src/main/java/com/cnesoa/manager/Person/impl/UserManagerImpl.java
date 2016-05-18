@@ -37,12 +37,13 @@ public class UserManagerImpl implements UserManager {
 
     @Override
     public User saveUser(User user) {
-        if (user.getPassword() == null || user.getUsername() == null
-                || user.getPassword().isEmpty() || user.getUsername().isEmpty()) {
+        if (user.getPasswordHash() == null || user.getUsername() == null
+                || user.getPasswordHash().isEmpty() || user.getUsername().isEmpty()) {
             user.setUsername(ucg.generateUsername(user));
-            user.setPassword(ucg.generatePassword());
+            user.setPasswordHash(ucg.generatePassword());
         }
-        user.setRole(Role.ROLE_ADMIN);
+        if (user.getId() == null)
+            user.setRole(Role.ROLE_ADMIN);
         return userRepository.save(user);
     }
 

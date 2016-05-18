@@ -52,12 +52,18 @@ public class ProfesseurManagerImpl implements ProfesseurManager{
     @Override
     public Professeur saveProfesseur(Professeur professeur) {
 
-        if (professeur.getPassword() == null || professeur.getUsername() == null
-                || professeur.getPassword().isEmpty() || professeur.getUsername().isEmpty()) {
+        if (professeur.getPasswordHash() == null || professeur.getUsername() == null
+                || professeur.getPasswordHash().isEmpty() || professeur.getUsername().isEmpty()) {
             professeur.setUsername(ucg.generateUsername(professeur));
-            professeur.setPassword(ucg.generatePassword());
+            professeur.setPasswordHash(ucg.generatePassword());
         }
-        professeur.setRole(Role.ROLE_PROF);
+        if (professeur.getCode() == null ||professeur.getCode().isEmpty()){
+            professeur.setCode(ucg.generateProfessorCode());
+        }
+        if (professeur.getId() == null) {
+            professeur.setRole(Role.ROLE_PROF);
+            professeur.getContact().setPerson(professeur);
+        }
         return professeurRepository.save(professeur);
     }
 
