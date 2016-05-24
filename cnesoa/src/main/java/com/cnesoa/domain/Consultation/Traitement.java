@@ -31,7 +31,7 @@ public class Traitement {
     private Boolean valide;
 
     //consultation liée au traitement
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Consultation consultation;
 
     /*_____________________________________*/

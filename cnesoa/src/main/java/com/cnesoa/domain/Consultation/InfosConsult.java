@@ -29,7 +29,7 @@ public class InfosConsult {
     private Binome binome;
 
     //consultation
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Consultation consultation;
 
     //note (1 à 5 étoiles) sur le diagnostic

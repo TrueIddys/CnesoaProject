@@ -45,7 +45,7 @@ public class FicheMedicale {
     //informations complémentaires
     private String infoComp;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Animal animal;
 
     /*_____________________________________________*/
