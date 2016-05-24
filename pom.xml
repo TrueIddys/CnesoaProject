@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<profiles>
 		<profile>
-			<id>cnesoaProject</id>
+			<id>openshift</id>
 		</profile>
 	</profiles>
 
