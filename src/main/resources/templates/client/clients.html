@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head lang="en">
+    <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
+    <title>Clients</title>
+</head>
+<body>
+
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/searchbar :: searchbar"></th:block> /*/-->
+    <div class="content-wrap">
+    <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(clients)}">
+        <h2>Clients</h2>
+        <hr class="horizontal"/>
+
+        <table class="table centered">
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Téléphone</th>
+                <th>Email</th>
+                <th>Rue</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                <th>Cotisation</th>
+
+            </tr>
+            <tr th:each="client : ${#lists.sort(clients)}">
+                <td th:text="${client.nom}">Nom</td>
+                <td th:text="${client.prenom}">Prenom</td>
+                <td th:text="${client.contact.tel}">Email</td>
+                <td th:text="${client.contact.mail}">Email</td>
+                <td th:text="${client.adresse.getNumRue()}">Rue</td>
+                <td th:text="${client.adresse.codePostal}">Code postal</td>
+                <td th:text="${client.adresse.ville}">Ville</td>
+                <td th:text="${client.getFormatCotisation()}">Cotisation</td>
+                <td>
+                    <li class="dropdown" style="width: 30px;list-style-type: none;">
+                        <button type="button" class="glyphicon glyphlist glyphicon-menu-down" aria-label="Justify">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{'/client/' + ${client.id}}">Voir
+                            </a></li>
+                            <li><a th:href="@{'/client/edit/' + ${client.id}}">Modifier
+                            </a></li>
+                            <li><a th:href="@{'/client/delete/' + ${client.id}}">Supprimer
+                            </a></li>
+                        </ul>
+                    </li>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div th:unless="${not   #lists.isEmpty(clients)}">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div>
+                    <h3>Pas de clients inscrits.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+</body>
+</html>

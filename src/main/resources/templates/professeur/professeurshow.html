@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="${professeur.getName()}"></title>
+    <!--/*/ <th:block th:include="fragments/headerfr :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/searchbar :: searchbar"></th:block> /*/-->
+    <div class="content-wrap">
+        <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
+        <h2>Détail du professeur</h2>
+
+
+        <table class="table centered">
+            <tbody>
+            <tr>
+                <td><label>Nom</label></td>
+                <td><label>Prénom</label></td>
+                <td><label>Email</label></td>
+                <td><label>Téléphone</label></td>
+                <td><label>Spécialité</label></td>
+                <td><label>Matière</label></td>
+                <td><li class="dropdown" style="width: 30px;list-style-type: none;">
+                    <button type="button" class="glyphicon glyphlist glyphicon-menu-down" aria-label="Justify">
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{'/professeur/edit/' + ${professeur.id}}">
+                            Modifier</a></li>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/professeur/delete/' + ${professeur.id}}">
+                            Supprimer</a></li>
+                        <li><a th:href="@{'/password'}">
+                            Modifier mot de passe</a></li>
+                    </ul>
+                </li></td>
+            </tr>
+            <tr>
+                <td><p class="form-control-static" th:text="${professeur.contact.nom}">Nom</p></td>
+                <td><p class="form-control-static" th:text="${professeur.contact.prenom}">Prenom</p></td>
+                <td><p class="form-control-static" th:text="${professeur.contact.mail}">Email</p></td>
+                <td><p class="form-control-static" th:text="${professeur.contact.tel}">Téléphone</p></td>
+                <td style="text-align: center">
+                    <div class="radio" th:each="s : ${professeur.specialite}" >
+                        <input disabled="disabled" type="checkbox"
+                               th:field="${professeur.specialite[__${s.key}__]}"
+                               th:text="${s.key}"/>
+                    </div>
+                </td>
+                <td><p class="form-control-static" th:text="${professeur.matiere}">Matière</p> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

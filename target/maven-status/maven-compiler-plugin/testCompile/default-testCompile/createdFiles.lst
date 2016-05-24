@@ -1,0 +1,8 @@
+com\cnesoa\domain\Person\EleveTest.class
+com\cnesoa\domain\Person\ClientTest.class
+com\cnesoa\domain\Person\ProfesseurTest.class
+com\cnesoa\domain\Person\UserTest.class
+com\cnesoa\CnesoaProjectApplicationTests.class
+com\cnesoa\domain\Animal\AnimalTest.class
+com\cnesoa\repository\ClientRepositoryTest.class
+com\cnesoa\utils\Generator.class
