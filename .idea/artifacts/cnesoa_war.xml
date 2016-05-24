@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="cnesoa:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="cnesoa-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="cnesoa:war exploded" />
+    </root>
+  </artifact>
+</component>
