@@ -5,6 +5,7 @@ import com.cnesoa.exceptions.NullObjectException;
 import com.cnesoa.manager.Consultation.ConsultationManager;
 import com.cnesoa.manager.Consultation.TraitementManager;
 import com.cnesoa.manager.CurrentUserManager;
+import com.cnesoa.utils.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,8 @@ public class TraitementController {
         if (currentUserManager.checkTraitement(traitementId) &&
                 traitementManager.getTraitementById(traitementId).getConsultation().getDiagnostic().getValide()){
             model.addAttribute("traitement", traitementManager.getTraitementById(traitementId));
-            if (traitementManager.getTraitementById(traitementId).getValide() == true)
+            if (traitementManager.getTraitementById(traitementId).getValide() == true &&
+                    currentUserManager.getUser().getRole() != Role.ROLE_ADMIN)
                 model.addAttribute("isEnabled", true);
             else
                 model.addAttribute("isEnabled", false);

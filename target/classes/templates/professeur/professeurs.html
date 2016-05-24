@@ -19,18 +19,26 @@
                     <th>Prénom</th>
                     <th>Email</th>
                     <th>Téléphone</th>
-                    <th>Voir</th>
-                    <th>Modifier</th>
-                    <th>Supprimer</th>
                 </tr>
                 <tr th:each="professeur : ${#lists.sort(professeurs)}">
                     <td th:text="${professeur.nom}">Nom</td>
                     <td th:text="${professeur.prenom}">Prénom</td>
                     <td th:text="${professeur.contact.mail}">Email</td>
                     <td th:text="${professeur.contact.tel}">Téléphone</td>
-                    <td><nav class="cl-effect-11"><a th:href="@{'/professeur/' + ${professeur.id}}" data-hover="Voir">Voir</a> </nav></td>
-                    <td><nav class="cl-effect-11"><a th:href="@{'/professeur/edit/' + ${professeur.id}}" data-hover="Modifier">Modifier</a> </nav></td>
-                    <td><nav class="cl-effect-11"><a th:href="@{'/professeur/delete/' + ${professeur.id}}" data-hover="Supprimer">Supprimer</a> </nav></td>
+                    <td>
+                    <li class="dropdown" style="width: 30px;list-style-type: none;">
+                        <button type="button" class="glyphicon glyphlist glyphicon-menu-down" aria-label="Justify">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{'/professeur/' + ${professeur.id}}">Voir
+                            </a></li>
+                            <li><a th:href="@{'/professeur/edit/' + ${professeur.id}}">Modifier
+                            </a></li>
+                            <li><a th:href="@{'/professeur/delete/' + ${professeur.id}}">Supprimer
+                            </a></li>
+                        </ul>
+                    </li>
+                    </td>
                 </tr>
             </table>
         </div>

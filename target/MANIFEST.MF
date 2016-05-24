@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-Implementation-Title: CnesoaProject
-Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: Maxime
-Implementation-Vendor-Id: com.cnesoa
 Created-By: IntelliJ IDEA
 Build-Jdk: 1.8.0_65
-Main-Class: ${start-class}
 

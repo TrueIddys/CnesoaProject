@@ -43,8 +43,8 @@ public class BinomeManagerImpl implements BinomeManager {
     public Binome saveBinome(Binome binome) {
         if (binome.getId() == null)
         {
-            binome.getEleve1().setBinome(binome);
-            binome.getEleve2().setBinome(binome);
+            binome.getEleve1().addBinome1(binome);
+            binome.getEleve2().addBinome2(binome);
             binome = binomeRepository.save(binome);
             eleveManager.saveEleve(binome.getEleve2());
             eleveManager.saveEleve(binome.getEleve1());
@@ -56,8 +56,8 @@ public class BinomeManagerImpl implements BinomeManager {
 
     @Override
     public void deleteBinome(Long id) {
-        getBinomeById(id).getEleve1().setBinome(null);
-        getBinomeById(id).getEleve2().setBinome(null);
+        getBinomeById(id).getEleve1().removeBinome1(getBinomeById(id));
+        getBinomeById(id).getEleve2().removeBinome2(getBinomeById(id));
         eleveManager.saveEleve(getBinomeById(id).getEleve1());
         eleveManager.saveEleve(getBinomeById(id).getEleve2());
         for (InfosConsult i : getBinomeById(id).getInfosConsult()){

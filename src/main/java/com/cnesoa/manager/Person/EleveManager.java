@@ -1,8 +1,11 @@
 package com.cnesoa.manager.Person;
 
+import com.cnesoa.domain.Binome;
 import com.cnesoa.domain.Consultation.Consultation;
 import com.cnesoa.domain.Consultation.InfosConsult;
 import com.cnesoa.domain.Person.Eleve;
+
+import java.util.List;
 
 /**
  * Created by Maxime on 05/04/2016.
@@ -22,6 +25,8 @@ public interface EleveManager {
     Iterable<Consultation> getListConsultations(Long id);
 
     Iterable<InfosConsult> getListInfosConsult(Long id);
+
+    List<Binome> getListBinome(Long eleveId);
 
     String moyenneDiag(Long id);
 

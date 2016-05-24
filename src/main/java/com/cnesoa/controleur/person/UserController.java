@@ -42,6 +42,8 @@ public class UserController {
         return "redirect:/me";
     }
 
+    //TODO impossibilité pour l'admin de changer le mot de passe de quelqu'un,
+    //il changera son mot de passe
     @RequestMapping("password")
     public String goToPasswordModif(Model model){
         User user = currentUserManager.getUser();

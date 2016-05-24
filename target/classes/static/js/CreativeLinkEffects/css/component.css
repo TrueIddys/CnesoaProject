@@ -472,7 +472,6 @@ nav a:focus {
 
 /* Effect 11: text fill based on Lea Verou's animation http://dabblet.com/gist/6046779 */
 .cl-effect-11 a {
-	border-top: 1px solid #FFFFFF;
 	text-shadow: none;
 } 
 
@@ -482,8 +481,7 @@ nav a:focus {
 	left: 0;
 	overflow: hidden;
 	max-width: 0;
-	border-bottom: 1px solid #A94442;
-	color: #A94442;
+	border-bottom: 1px solid #fff;
 	content: attr(data-hover);
 	-webkit-transition: max-width 0.5s;
 	-moz-transition: max-width 0.5s;

@@ -17,16 +17,27 @@
                 <tr>
                     <th>Binôme</th>
                     <th>Numéro de binôme</th>
-                    <th>Voir</th>
-                    <th>Modifier</th>
-                    <th>Supprimer</th>
                 </tr>
                 <tr th:each="binome : ${#lists.sort(binomes)}">
                     <td th:text="${binome.getName()}">Nom</td>
                     <td th:text="${binome.numBinome}">Email</td>
-                    <td><nav class="cl-effect-11"><a th:href="@{'/binome/' + ${binome.id}}" data-hover="Voir">Voir</a> </nav></td>
-                    <td><nav class="cl-effect-11"><a th:href="@{'/binome/edit/' + ${binome.id}}" data-hover="Modifier">Modifier</a> </nav></td>
-                    <td><nav class="cl-effect-11"><a th:href="@{'/binome/delete/' + ${binome.id}}" data-hover="Supprimer">Supprimer</a> </nav></td>
+                    <td>
+                        <li class="dropdown" style="width: 30px;list-style-type: none;">
+                            <button type="button" class="glyphicon glyphlist glyphicon-menu-down" aria-label="Justify">
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a th:href="@{'/binome/' + ${binome.id}}">Voir
+                                    </a></li>
+                                <li><a th:href="@{'/binome/edit/' + ${binome.id}}">Modifier
+                                    </a></li>
+                                <li><a th:href="@{'/binome/delete/' + ${binome.id}}">Supprimer
+                                    </a></li>
+                            </ul>
+                        </li>
+                    </td>
+                    <!--<td><nav class="cl-effect-11"><a th:href="@{'/binome/' + ${binome.id}}" data-hover="Voir">Voir</a> </nav></td>-->
+                    <!--<td><nav class="cl-effect-11"><a th:href="@{'/binome/edit/' + ${binome.id}}" data-hover="Modifier">Modifier</a> </nav></td>-->
+                    <!--<td><nav class="cl-effect-11"><a th:href="@{'/binome/delete/' + ${binome.id}}" data-hover="Supprimer">Supprimer</a> </nav></td>-->
                 </tr>
             </table>
         </div>

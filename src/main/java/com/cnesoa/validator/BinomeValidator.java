@@ -1,7 +1,6 @@
 package com.cnesoa.validator;
 
 import com.cnesoa.domain.Binome;
-import com.cnesoa.exceptions.EleveAlreadyInBinomeException;
 import com.cnesoa.exceptions.MissingAttributeException;
 import com.cnesoa.exceptions.NullObjectException;
 import org.springframework.validation.Errors;
@@ -24,10 +23,6 @@ public class BinomeValidator implements Validator {
 
         if (binome == null){
             throw new NullObjectException("Le binome n'as pas pu être sauvegardé.");
-        }
-        if (binome.getEleve1().getBinome() != null || binome.getEleve2().getBinome() != null)
-        {
-            throw new EleveAlreadyInBinomeException("Un des élèves fait déjà parti d'un binome.");
         }
         if (binome.getEleve1() == null || binome.getEleve2() == null){
             throw new MissingAttributeException("Un ou plusieurs des élèves n'ont pas étés choisis.");

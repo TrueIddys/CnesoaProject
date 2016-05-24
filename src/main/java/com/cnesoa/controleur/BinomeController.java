@@ -41,7 +41,7 @@ public class BinomeController {
     @RequestMapping("binome/new")
     public String newBinome(Model model){
         model.addAttribute("binome", new Binome());
-        model.addAttribute("eleves", eleveManager.listEleveWithoutBinome());
+        model.addAttribute("eleves", eleveManager.listAllEleve());
         return "binome/binomeform";
     }
 

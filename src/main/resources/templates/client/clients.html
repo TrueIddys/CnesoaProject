@@ -25,9 +25,7 @@
                 <th>Code postal</th>
                 <th>Ville</th>
                 <th>Cotisation</th>
-                <th>Voir</th>
-                <th>Modifier</th>
-                <th>Supprimer</th>
+
             </tr>
             <tr th:each="client : ${#lists.sort(clients)}">
                 <td th:text="${client.nom}">Nom</td>
@@ -38,9 +36,20 @@
                 <td th:text="${client.adresse.codePostal}">Code postal</td>
                 <td th:text="${client.adresse.ville}">Ville</td>
                 <td th:text="${client.getFormatCotisation()}">Cotisation</td>
-                <td><nav class="cl-effect-11"><a th:href="@{'/client/' + ${client.id}}" data-hover="Voir">Voir</a> </nav></td>
-                <td><nav class="cl-effect-11"><a th:href="@{'/client/edit/' + ${client.id}}" data-hover="Modifier">Modifier</a> </nav></td>
-                <td><nav class="cl-effect-11"><a th:href="@{'/client/delete/' + ${client.id}}" data-hover="Supprimer">Supprimer</a></nav> </td>
+                <td>
+                    <li class="dropdown" style="width: 30px;list-style-type: none;">
+                        <button type="button" class="glyphicon glyphlist glyphicon-menu-down" aria-label="Justify">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{'/client/' + ${client.id}}">Voir
+                            </a></li>
+                            <li><a th:href="@{'/client/edit/' + ${client.id}}">Modifier
+                            </a></li>
+                            <li><a th:href="@{'/client/delete/' + ${client.id}}">Supprimer
+                            </a></li>
+                        </ul>
+                    </li>
+                </td>
             </tr>
         </table>
     </div>

@@ -12,7 +12,7 @@ import java.util.Date;
  * Created by Maxime on 12/04/2016.
  * Class that contains cotisation information in json format
  */
-public class Event {
+public class    Event {
 
     private String id;
 

@@ -46,7 +46,7 @@ public class EleveManagerImpl implements EleveManager {
         Iterable<Eleve> allEleve = listAllEleve();
         List<Eleve> eleveWithoutBinome = new ArrayList<>();
         for (Eleve e : allEleve){
-            if (e.getBinome() == null)
+            if (e.getAllBinome().isEmpty())
                 eleveWithoutBinome.add(e);
         }
         return eleveWithoutBinome;
@@ -72,32 +72,47 @@ public class EleveManagerImpl implements EleveManager {
 
     @Override
     public void deleteEleve(Long id) {
-        Binome binome = getEleveById(id).getBinome();
-        if (binome != null)
-            binomeManager.deleteBinome(binome.getId());
+        List<Binome> binomes = getEleveById(id).getAllBinome();
+        if (!binomes.isEmpty())
+        {
+            for (Binome b : binomes){
+                binomeManager.deleteBinome(b.getId());
+            }
+        }
         this.eleveRepository.delete(id);
     }
 
     @Override
     public Iterable<Consultation> getListConsultations(Long eleveId) {
-        Binome binome = getEleveById(eleveId).getBinome();
+        List<Binome> binome = getListBinome(eleveId);
         List<Consultation> listConsult = new ArrayList<>();
-        if (binome != null){
-            for (InfosConsult i : binome.getInfosConsult()){
-                listConsult.add(i.getConsultation());
+        if (!binome.isEmpty()){
+            for (Binome b : binome){
+                for (InfosConsult i : b.getInfosConsult()){
+                    listConsult.add(i.getConsultation());
+                }
             }
         }
         return listConsult;
     }
 
     @Override
+    public List<Binome> getListBinome(Long eleveId){
+        List<Binome> listBinome = new ArrayList<>();
+        listBinome = getEleveById(eleveId).getAllBinome();
+        return listBinome;
+    }
+
+    @Override
     public Iterable<InfosConsult> getListInfosConsult(Long eleveId){
-        Binome binome = getEleveById(eleveId).getBinome();
+        List<Binome> binome = getListBinome(eleveId);
         List<InfosConsult> listInfosConsults = new ArrayList<>();
-        if (binome != null){
-            for (InfosConsult i : binome.getInfosConsult()){
-                if (i.getConsultation().getDateConsultation().before(Date.from(Instant.now()))){
-                    listInfosConsults.add(i);
+        if (!binome.isEmpty()){
+            for (Binome b : binome){
+                for (InfosConsult i : b.getInfosConsult()){
+                    if (i.getConsultation().getDateConsultation().before(Date.from(Instant.now()))){
+                        listInfosConsults.add(i);
+                    }
                 }
             }
         }

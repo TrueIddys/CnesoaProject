@@ -118,7 +118,8 @@
                     <li><a class="amenu" sec:authorize="isAuthenticated()" href="/logout">
                         Se déconnecter
                     </a></li>
-                    <li><a class="amenu" sec:authorize="isAnonymous()" href="/login">
+                    <li><a class="amenu" data-toggle="modal" data-target="#loginModal"
+                           sec:authorize="isAnonymous()">
                         Se connecter
                     </a></li>
                 </ul>
@@ -137,6 +138,44 @@
         </div>
 
     </nav>
+
+    <div class="modal fade" id="loginModal" tabindex="1" role="dialog" aria-labelledby="loginModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #a94442;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h2 class="modal-title" id="myModalLabel">Authentification</h2>
+                </div>
+                <div class="form">
+                    <form class="form-horizontal" th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <div class="form-error" th:if="${error != null}" th:text="${error}">Static summary</div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <input required="required" name="username" id="username" type="text" class="form-control court" placeholder="Nom d'utilisateur"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <input required="required" name="password" id="password" type="password" class="form-control court" placeholder="Mot de passe"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="vertical-align: middle; color: black;" for="remember-me">Se souvenir de moi</label>
+                            <input style="vertical-align: middle;" type="checkbox" name="remember-me" id="remember-me"/>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <button type="submit" class="btn btn-login btn-basdepage">Valider</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 

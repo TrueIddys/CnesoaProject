@@ -39,7 +39,7 @@ public class DiagnosticController {
         if (currentUserManager.checkDiagnostic(diagnosticId)){
             model.addAttribute("diagnostic", diagnosticManager.getDiagnosticById(diagnosticId));
             if (diagnosticManager.getDiagnosticById(diagnosticId).getValide() == true &&
-                    currentUserManager.getUser().getRole() == Role.ROLE_ADMIN)
+                    currentUserManager.getUser().getRole() != Role.ROLE_ADMIN)
                 model.addAttribute("isEnabled", true);
             else
                 model.addAttribute("isEnabled", false);

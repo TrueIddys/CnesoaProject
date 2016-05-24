@@ -22,6 +22,16 @@ button:focus {
     margin-bottom: 20px;
 }
 
+.btn-login {
+    color: #eee;
+    background-color: rgb(62, 59, 59);
+}
+
+.btn-login:hover, .btn-login:active, .btn-login:focus {
+    background-color: #A94442;
+    border-color: #A94442;
+}
+
 
 body {
     color: #ffffff;
@@ -197,6 +207,7 @@ textarea.form-control {
 }
 
 td {
+    text-align: center;
     vertical-align: middle !important;
 }
 
@@ -212,11 +223,6 @@ tr:hover {
 
 /*Plugins & Bootstrap
 ________________________*/
-
-/*Creative Link*/
-.cl-effect-11 a:hover {
-    color: #74777b !important;
-}
 
 /*Calendar*/
 #calendar.cal-context {
@@ -247,10 +253,12 @@ ________________________*/
     background-color: transparent;
 }
 
-.btn-default:hover{
+.btn-default:hover, .btn-default:active, .btn-default:focus,
+.open>.dropdown-toggle.btn-default {
     background-color: #A94442;
     border-color: #A94442;
 }
+
 
 .btn:hover {
     color: #000000 !important;
@@ -269,6 +277,14 @@ ________________________*/
 
 .form-control[disabled] {
     color: #000000;
+}
+
+.glyphlist {
+    border: none;
+    background-color: transparent;
+    font-size: 23px;
+    font-weight: lighter;
+    color: white;
 }
 
 .radio {
