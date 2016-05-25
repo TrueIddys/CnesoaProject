@@ -36,6 +36,7 @@ button:focus {
 body {
     color: #ffffff;
     font-family: "Open Sans", Arial, sans-serif;
+    font-size: 1.55em;
     padding-top: 30px;
     /*background-color: #fff;*/
     background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('../images/chevalwlp.jpg');
@@ -246,6 +247,7 @@ ________________________*/
 .btn {
     -webkit-transition: all .35s;
     transition: all .35s ease-in-out;
+    font-size: 1em;
 }
 
 .btn-default {
@@ -289,11 +291,6 @@ ________________________*/
 
 .radio {
     padding-top: 0px;
-}
-
-
-.navbar {
-    font-size: 14px;
 }
 
 .navbar-brand{
