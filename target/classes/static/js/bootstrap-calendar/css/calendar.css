@@ -390,7 +390,6 @@
 }
 .cal-row-head [class*="cal-cell"]:first-child,
 .cal-row-head [class*="cal-cell"] {
-  font-weight: bolder;
   text-align: center;
   border: 0px solid;
   padding: 5px 0;
