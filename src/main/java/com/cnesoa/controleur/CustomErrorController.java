@@ -1,6 +1,5 @@
 package com.cnesoa.controleur;
 
-import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
-public class CustomErrorController implements ErrorController {
+public class CustomErrorController {
 
     private static final String PATH = "/error";
 
@@ -21,12 +20,12 @@ public class CustomErrorController implements ErrorController {
      * @param model
      * @return
      */
-    @RequestMapping(value = PATH)
-    public String error(Exception e, Model model) {
-        System.out.println(e.getStackTrace());
-        model.addAttribute("error", "Oups ! Le site a rencontré une erreur.");
-        return "customerror";
-    }
+//    @RequestMapping(value = PATH)
+//    public String error(Exception e, Model model) {
+//        System.out.println(e.getStackTrace());
+//        model.addAttribute("error", "Oups ! Le site a rencontré une erreur.");
+//        return "customerror";
+//    }
 
     /**
      * catch access denied exception launched by Spring Security
@@ -41,8 +40,8 @@ public class CustomErrorController implements ErrorController {
         return "customerror";
     }
 
-    @Override
-    public String getErrorPath() {
-        return PATH;
-    }
+//    @Override
+//    public String getErrorPath() {
+//        return PATH;
+//    }
 }

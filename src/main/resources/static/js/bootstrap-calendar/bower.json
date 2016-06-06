@@ -2,15 +2,13 @@
   "name": "bootstrap-calendar",
   "version": "0.2.4",
   "main": [
-    "./js/language/en-GB.js",
     "./js/calendar.js",
     "./css/calendar.css"
   ],
   "ignore": [
     "**/.*",
     "node_modules",
-    "components",
-    "less"
+    "components"
   ],
   "dependencies": {
     "jquery": "~1.10.2",

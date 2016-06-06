@@ -24,14 +24,14 @@
                 <div class="form-group">
                     <label class="control-label">Binome 1</label>
                     <select required="required" th:field="*{eleve1}">
-                        <option th:each="eleve : ${eleves}" th:value="${eleve.id}" th:text="${eleve.getName()}"></option>
+                        <option th:each="eleve : ${#lists.sort(eleves)}" th:value="${eleve.id}" th:text="${eleve.getName()}"></option>
                     </select>
 
                 </div>
                 <div class="form-group">
                     <label class=" control-label">Binome 2</label>
                     <select required="required" th:field="*{eleve2}">
-                        <option th:each="eleve : ${eleves}" th:value="${eleve.id}" th:text="${eleve.getName()}"></option>
+                        <option th:each="eleve : ${#lists.sort(eleves)}" th:value="${eleve.id}" th:text="${eleve.getName()}"></option>
                     </select>
 
                 </div>

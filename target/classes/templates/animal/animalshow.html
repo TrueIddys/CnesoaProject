@@ -24,58 +24,44 @@
                 </nav>
             </div><!-- /tabs -->
         </div>
-        <div class="row" style="margin-top: 20px;">
-            <div class="col-md-4 col-md-offset-3">
-                <div class="table-responsive">
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <td><label>Nom</label></td>
-                            <td><p class="form-control-static" th:text="${animal.nom}">Nom</p></td>
-                        </tr>
-                        <tr>
-                            <td><label>Type</label></td>
-                            <td><p class="form-control-static" th:text="${animal.type}">Type</p></td>
-                        </tr>
-                        <tr>
-                            <td><label>Race</label></td>
-                            <td><p class="form-control-static" th:text="${animal.race}">Race</p></td>
-                        </tr>
-                        <tr>
-                            <td><label>Robe</label></td>
-                            <td><p class="form-control-static" th:text="${animal.robe}">Robe</p></td>
-                        </tr>
-                        <tr>
-                            <td><label>Sexe</label></td>
-                            <td><p class="form-control-static" th:text="${animal.sexe}">Sexe</p></td>
-                        </tr>
-                        <tr>
-                            <td><nav class="cl-effect-11">
-                                <a th:remove="${isNotAdmin}? tag"
-                                   th:href="@{'/client/'+ ${animal.client.id}}"
-                                   data-hover="Propriétaire">Propriétaire</a>
-                            </nav>
-                            </td>
-                            <td><p th:text="${animal.client.getName()}" class="form-control-static">Propriétaire</p></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <li class="dropdown" style="list-style-type: none;">
-                    <button type="button" class="btn btn-default" aria-label="Justify"
-                            ><span class="glyphicon glyphicon-th-list" aria-hidden="true" style="font-size: 24px; top: 2px;">
-                            </span></button>
-                    <ul class="dropdown-menu">
-                        <li><a th:href="@{'/animal/' + ${animal.id}+'/edit'}">Modifier ce profil</a></li>
-                        <li><a th:href="@{'/animal/delete/'+${animal.id}}">Supprimer ce profil</a></li>
-                        <li><a th:href="@{'/consultations/'+${animal.id}}">Voir les consultations</a></li>
-                        <li><a th:href="@{'/animal/' + ${animal.id} + '/consultation/new'}">Ajouter une consultation</a></li>
-                        <li><a th:href="@{'/animal/'+${animal.id}+'/lastconsult'}">Voir la dernière consultation</a></li>
-                    </ul>
-                </li>
-            </div>
+        <div class="row">
+
+            <table class="table centered" style="margin-top: 30px;">
+                <tbody>
+                <tr>
+                    <td><label>Nom</label></td>
+                    <td><label>Type</label></td>
+                    <td><label>Race</label></td>
+                    <td><label>Robe</label></td>
+                    <td><label>Sexe</label></td>
+                    <td><nav class="cl-effect-11">
+                        <a th:remove="${isNotAdmin}? tag"
+                           th:href="@{'/client/'+ ${animal.client.id}}"
+                           data-hover="Propriétaire">Propriétaire</a>
+                    </nav></td>
+                    <td><li class="dropdown" style="width: 30px;list-style-type: none;">
+                        <button type="button" class="glyphicon glyphlist glyphicon-menu-down" aria-label="Justify">
+                            </button>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{'/animal/' + ${animal.id}+'/edit'}">Modifier ce profil</a></li>
+                            <li><a th:href="@{'/animal/delete/'+${animal.id}}">Supprimer ce profil</a></li>
+                            <li><a th:href="@{'/consultations/'+${animal.id}}">Voir les consultations</a></li>
+                            <li><a th:href="@{'/animal/' + ${animal.id} + '/consultation/new'}">Ajouter une consultation</a></li>
+                            <li><a th:href="@{'/animal/'+${animal.id}+'/lastconsult'}">Voir la dernière consultation</a></li>
+                        </ul>
+                    </li></td>
+
+                </tr>
+                <tr>
+                    <td><p class="form-control-static" th:text="${animal.nom}">Nom</p></td>
+                    <td><p class="form-control-static" th:text="${animal.type}">Type</p></td>
+                    <td><p class="form-control-static" th:text="${animal.race}">Race</p></td>
+                    <td><p class="form-control-static" th:text="${animal.robe}">Robe</p></td>
+                    <td><p class="form-control-static" th:text="${animal.sexe}">Sexe</p></td>
+                    <td><p th:text="${animal.client.getName()}" class="form-control-static">Propriétaire</p></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

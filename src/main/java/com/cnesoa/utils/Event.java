@@ -6,17 +6,18 @@ import com.cnesoa.domain.Person.Client;
 import com.cnesoa.domain.Person.Professeur;
 import com.cnesoa.exceptions.NullObjectException;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
  * Created by Maxime on 12/04/2016.
  * Class that contains cotisation information in json format
  */
-public class    Event {
+public class Event {
 
     private String id;
 
-    private Long date;
+    private Date date;
 
     private String binome;
 
@@ -24,29 +25,37 @@ public class    Event {
 
     private String animal;
 
+    private String nomAnimal;
+
     private String proprio;
+
+    private Date dateFin;
 
     /*_____________________________*/
 
     public Event(){
-
     }
 
     public Event(String id, Date date, Binome binome, Professeur professeur, Animal animal, Client client){
         this.id = id;
         if (date == null)
             throw new NullObjectException("La date pour cette consultation n'as pas été renseignée.");
-        this.date = date.getTime();
+        this.date = date;
         if (binome == null)
             this.binome = "Pas de binome.";
         else
-            this.binome = binome.getName();
+            this.binome = binome.getEleve1().getNom() + ", "+binome.getEleve2().getNom();
         if (professeur == null)
             this.professeur ="Pas de professeur";
         else
             this.professeur = professeur.getName();
-        this.animal = animal.getNom();
-        this.proprio = client.getName();
+        this.animal = animal.getRace();
+        this.nomAnimal = animal.getNom();
+        this.proprio = "M/Mme "+client.getNom();
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.MINUTE, 90);
+        this.dateFin = c.getTime();
     }
 
     public String getId() {
@@ -57,11 +66,11 @@ public class    Event {
         this.id = id;
     }
 
-    public Long getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

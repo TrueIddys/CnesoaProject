@@ -62,200 +62,160 @@ public class AppLoader implements ApplicationListener<ContextRefreshedEvent>{
 
     /*______________________*/
 
+
+    public Client clientBuilder(String nom, String prenom, String email, String tel){
+        Client client = new Client(nom, prenom, email, tel);
+        return clientManager.saveClient(client);
+    }
+
+    public Animal animalBuilder(String nom, String race, String type, String sexe, String robe, Client client){
+        Animal animal = new Animal(nom, race, sexe);
+        animal.setRobe(robe);
+        animal.setType(type);
+        animal.setClient(client);
+        return animalManager.saveAnimal(animal);
+    }
+
+    public Adresse adresseBuilder(String numero, String rue, String code, String ville, Client client){
+        Adresse adresse = new Adresse(numero, rue, code, ville);
+        adresse.setClient(client);
+        return adresseManager.saveAdresse(adresse);
+    }
+
+    public Eleve eleveBuilder(String nom, String prenom, String mail, String tel){
+        Eleve eleve = new Eleve(nom, prenom, mail, tel);
+        eleve.setRole(Role.ROLE_ELEVE);
+        return eleveManager.saveEleve(eleve);
+    }
+
+    public Professeur professeurBuilder(String nom, String prenom, String mail, String tel){
+        Professeur professeur = new Professeur(nom, prenom, mail, tel);
+        professeur.setRole(Role.ROLE_PROF);
+        return professeurManager.saveProfesseur(professeur);
+    }
+
+    public Binome binomeBuilder(Eleve eleve1, Eleve eleve2, Integer numBinome){
+        Binome binome = new Binome();
+        binome.setEleve1(eleve1);
+        binome.setEleve2(eleve2);
+        binome.setNumBinome(numBinome);
+        return binomeManager.saveBinome(binome);
+    }
+
+    public Consultation consultationBuilder(Calendar c, Animal animal, Binome bin, Professeur prof){
+        Consultation cons = new Consultation();
+        cons.setDateConsultation(c.getTime());
+        cons.setAnimal(animal);
+        cons.getInfosConsult().setBinome(bin);
+        cons.getInfosConsult().setProfesseur(prof);
+        return consultationManager.saveConsultation(cons);
+    }
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        Client client1 = new Client("Bouchard", "Gerard", "gerard.dupont@gmail.com", "0645788956");
-        client1 = clientManager.saveClient(client1);
+        Client client1 = clientBuilder("Bouchard", "Gerard", "gerard.dupont@gmail.com", "0645788956");
+        Client client2 = clientBuilder("Lapeyre", "Pierre", "pierre63@gmail.com", "0475234589");
+        Client client3 = clientBuilder("Chesne", "Axel", "tartinedumonde@gmail.com", "0485234589");
+        Client client4 = clientBuilder("Raymond", "Gerard", "flemmard63@gmail.com", "0475244589");
 
-        Animal animal1 = new Animal("Rex", "Chien", "Male");
-        animal1.setRobe("Noir");
-        animal1.setType("Berger allemand");
-        animal1.setClient(client1);
-        animal1 = animalManager.saveAnimal(animal1);
+        Adresse adr1 = adresseBuilder("11 bis", "Avenue des Etats-Unis", "63000", "Clermont-Ferrand", client1);
+        Adresse adr2 = adresseBuilder("23", "Rue des Acacias", "63500", "Riom", client2);
+        Adresse adr3 = adresseBuilder("2", "Rue des Brelans", "43700", "Brives", client3);
+        Adresse adr4 = adresseBuilder("105", "Boulevard Lafayette", "69000", "Lyon", client4);
 
-        Client client2 = new Client("Lapeyre", "Pierre", "pierre63@gmail.com", "0475234589");
-        client2 = clientManager.saveClient(client2);
+        Animal animal1 = animalBuilder("Rex", "Chien", "Berger allemand", "Male", "Noir", client1);
+        Animal animal2 = animalBuilder("Gerard", "Chat", "Gouttiere", "Femelle", "Blanche", client3);
+        Animal animal3 = animalBuilder("Rookie", "Cheval", "Truc", "Jument", "Marron", client2);
+        Animal animal4 = animalBuilder("Edgar", "Lapin", "Normal","Male", "Gris", client4);
 
-        Client client3 = new Client("Chesne", "Axel", "tartinedumonde@gmail.com", "0485234589");
-        client3 = clientManager.saveClient(client3);
+        Eleve eleve1 = eleveBuilder("Peyral", "Maxime", "maxime.peyral@gmail.com", "0667367526");
+        Eleve eleve2 = eleveBuilder("Cortial", "Cedric", "cedric.cortial@gmail.com", "0654785698");
+        Eleve eleve3= eleveBuilder("Morel", "Clement", "clement.morel@gmail.com", "0652365698");
+        Eleve eleve4= eleveBuilder("Bertola", "Gerard", "leduc@gmail.com", "0682365698");
+        Eleve eleve5= eleveBuilder("Lafond", "Claire", "koaladu42@gmail.com", "0652865698");
+        Eleve eleve6= eleveBuilder("Pyetrika", "Stanilas", "lerusseponot@hotmail.fr", "0654885698");
 
-        Animal animal2 = new Animal("Gerard", "Chat", "Femelle");
-        animal2.setRobe("Blanche");
-        animal2.setType("Gouttiere");
-        animal2.setClient(client3);
-        animal2 = animalManager.saveAnimal(animal2);
+        Professeur prof1 = professeurBuilder("Mazuel", "Adrien", "lebogossdu43@gmail.com", "0658134679");
+        Professeur prof2 = professeurBuilder("Robinet", "Gerard", "rockeur63@gmail.com", "0658138679");
+        Professeur prof3 = professeurBuilder("Jaboin", "Quentin", "catocathé@outlook.com", "0654346494");
 
-        Client client4 = new Client("Raymond", "Gerard", "flemmard63@gmail.com", "0475244589");
-        client4 = clientManager.saveClient(client4);
-
-        Adresse adr1 = new Adresse("11 bis", "Avenue des Etats-Unis", "63000", "Clermont-Ferrand");
-        adr1.setClient(client1);
-        Adresse adr2 = new Adresse("23", "Rue des Acacias", "63500", "Riom");
-        adr2.setClient(client2);
-        Adresse adr3 = new Adresse("2", "Rue des Brelans", "43700", "Brives");
-        adr3.setClient(client3);
-        Adresse adr4 = new Adresse("105", "Boulevard Lafayette", "690000", "Lyon");
-        adr4.setClient(client4);
-        adresseManager.saveAdresse(adr1);
-        adresseManager.saveAdresse(adr2);
-        adresseManager.saveAdresse(adr3);
-        adresseManager.saveAdresse(adr4);
-
-        Eleve eleve1 = new Eleve("Peyral", "Maxime", "maxime.peyral@gmail.com", "0667367526");
-        eleve1.setRole(Role.ROLE_ELEVE);
-        eleve1 = eleveManager.saveEleve(eleve1);
-
-        Eleve eleve2 = new Eleve("Cortial", "Cedric", "cedric.cortial@gmail.com", "0654785698");
-        eleve2.setRole(Role.ROLE_ELEVE);
-        eleve2 = eleveManager.saveEleve(eleve2);
-
-        Eleve eleve3= new Eleve("Morel", "Clement", "clement.morel@gmail.com", "0652365698");
-        eleve3.setRole(Role.ROLE_ELEVE);
-        eleve3 = eleveManager.saveEleve(eleve3);
-
-        Eleve eleve4= new Eleve("Bertola", "Gerard", "leduc@gmail.com", "0682365698");
-        eleve4.setRole(Role.ROLE_ELEVE);
-        eleve4 = eleveManager.saveEleve(eleve4);
-
-        Eleve eleve5= new Eleve("Lafond", "Claire", "koaladu42@gmail.com", "0652865698");
-        eleve5.setRole(Role.ROLE_ELEVE);
-        eleve5 = eleveManager.saveEleve(eleve5);
-
-        Professeur prof1 = new Professeur("Mazuel", "Adrien", "lebogossdu43@gmail.com", "0658134679");
-        prof1.setRole(Role.ROLE_PROF);
-        prof1 = professeurManager.saveProfesseur(prof1);
-
-        Professeur prof2 = new Professeur("Robinet", "Gerard", "rockeur63@gmail.com", "0658138679");
-        prof2.setRole(Role.ROLE_PROF);
-        prof2 = professeurManager.saveProfesseur(prof2);
-
-        Binome bin1 = new Binome();
-        bin1.setEleve1(eleve1);
-        bin1.setEleve2(eleve2);
-        bin1.setNumBinome(1);
-        bin1 = binomeManager.saveBinome(bin1);
-
-        Binome bin2 = new Binome();
-        bin2.setEleve2(eleve4);
-        bin2.setEleve1(eleve5);
-        bin2.setNumBinome(2);
-        bin2 = binomeManager.saveBinome(bin2);
+        Binome bin1 = binomeBuilder(eleve1, eleve2, 1);
+        Binome bin2 = binomeBuilder(eleve3, eleve4, 2);
+        Binome bin3 = binomeBuilder(eleve5, eleve6, 3);
 
         Calendar c = Calendar.getInstance();
         c.setTime(Date.from(Instant.now()));
         c.add(Calendar.DATE, 1);
+        c.set(Calendar.HOUR_OF_DAY, 8);
+        c.set(Calendar.MINUTE, 30);
 
-        Consultation cons1 = new Consultation();
-        cons1.setDateConsultation(c.getTime());
-        cons1.setAnimal(animal1);
-        cons1.getInfosConsult().setBinome(bin2);
-        cons1.getInfosConsult().setProfesseur(prof1);
-        cons1 = consultationManager.saveConsultation(cons1);
+        Consultation cons1 = consultationBuilder(c, animal1, bin1, prof1);
+        Consultation cons2 = consultationBuilder(c, animal2, bin2, prof2);
+        Consultation cons3 = consultationBuilder(c, animal3, bin3, prof3);
+        consultationBuilder(c, animal2, bin3, prof1);
+        consultationBuilder(c, animal2, bin3, prof1);
+        consultationBuilder(c, animal2, bin3, prof1);
+        consultationBuilder(c, animal2, bin3, prof1);
 
-        Consultation cons6 = new Consultation();
-        cons6.setDateConsultation(c.getTime());
-        cons6.setAnimal(animal1);
-        cons6.getInfosConsult().setBinome(bin1);
-        cons6.getInfosConsult().setProfesseur(prof1);
-        cons6 = consultationManager.saveConsultation(cons6);
+        c.add(Calendar.MINUTE, 90);
 
-        Consultation cons7 = new Consultation();
-        cons7.setDateConsultation(c.getTime());
-        cons7.setAnimal(animal1);
-        cons7.getInfosConsult().setBinome(bin1);
-        cons7.getInfosConsult().setProfesseur(prof2);
-        cons7 = consultationManager.saveConsultation(cons7);
+        Consultation cons4 = consultationBuilder(c, animal4, bin1, prof2);
+        Consultation cons5 = consultationBuilder(c, animal1, bin2, prof3);
+        Consultation cons6 = consultationBuilder(c, animal3, bin3, prof1);
 
-        Consultation cons8 = new Consultation();
-        cons8.setDateConsultation(c.getTime());
-        cons8.setAnimal(animal1);
-        cons8.getInfosConsult().setBinome(bin2);
-        cons8.getInfosConsult().setProfesseur(prof2);
-        cons8 = consultationManager.saveConsultation(cons8);
+        c.add(Calendar.MINUTE, 180);
 
-        Consultation cons9 = new Consultation();
-        cons9.setDateConsultation(c.getTime());
-        cons9.setAnimal(animal2);
-        cons9.getInfosConsult().setBinome(bin1);
-        cons9.getInfosConsult().setProfesseur(prof1);
-        cons9 = consultationManager.saveConsultation(cons9);
-
-        Consultation cons10 = new Consultation();
-        cons10.setDateConsultation(c.getTime());
-        cons10.setAnimal(animal2);
-        cons10.getInfosConsult().setBinome(bin1);
-        cons10.getInfosConsult().setProfesseur(prof2);
-        cons10 = consultationManager.saveConsultation(cons10);
-
-        Consultation cons11 = new Consultation();
-        cons11.setDateConsultation(c.getTime());
-        cons11.setAnimal(animal2);
-        cons11.getInfosConsult().setBinome(bin2);
-        cons11.getInfosConsult().setProfesseur(prof1);
-        cons11 = consultationManager.saveConsultation(cons11);
-
-        Consultation cons12 = new Consultation();
-        cons12.setDateConsultation(c.getTime());
-        cons12.setAnimal(animal2);
-        cons12.getInfosConsult().setBinome(bin2);
-        cons12.getInfosConsult().setProfesseur(prof2);
-        cons12 = consultationManager.saveConsultation(cons12);
+        Consultation cons7 = consultationBuilder(c, animal2, bin1, prof3);
+        Consultation cons8 = consultationBuilder(c, animal1, bin3, prof2);
+        Consultation cons9 = consultationBuilder(c, animal4, bin2, prof1);
 
         c.add(Calendar.DATE, -36);
 
-        Consultation cons3 = new Consultation();
-        cons3.setDateConsultation(c.getTime());
-        cons3.setAnimal(animal2);
-        cons3.getInfosConsult().setBinome(bin1);
-        cons3.getInfosConsult().setProfesseur(prof2);
-        cons3.setMotif("Visite : bilan, pleure parfois quand prise sous le ventre");
-        cons3.getDiagnostic().setDouleur("sphère viscérale");
-        cons3.getDiagnostic().setDynamique("rachis en 2 partie à L3/L4");
-        cons3.getDiagnostic().setPalpatoire("intestins, diaphragme");
-        cons3.getDiagnostic().setDiagnosticText("intestins = GI (+ système digestif global), diaphragme, foie");
-        cons3.getDiagnostic().setValide(true);
-        cons3.getTraitement().setDetails("Crane sacré : rééquilibrage NRP /n" +
+        Consultation cons10 = consultationBuilder(c, animal2, bin1, prof2);
+        cons10.setMotif("Visite : bilan, pleure parfois quand prise sous le ventre");
+        cons10.getDiagnostic().setDouleur("sphère viscérale");
+        cons10.getDiagnostic().setDynamique("rachis en 2 partie à L3/L4");
+        cons10.getDiagnostic().setPalpatoire("intestins, diaphragme");
+        cons10.getDiagnostic().setDiagnosticText("intestins = GI (+ système digestif global), diaphragme, foie");
+        cons10.getDiagnostic().setValide(true);
+        cons10.getTraitement().setDetails("Crane sacré : rééquilibrage NRP /n" +
                 "TOG : rachis, sternum /n" +
                 "Viscéral : intestion (GI+++) + sphère digestive/n" +
                 "Tumilaire : diaphragme (+ mécanique) /n" +
                 "Myotensif : rachis (avec antérieur et postérieur) /n" +
                 "Massages + palpe roulé") ;
-        cons3.getTraitement().setResultat("nécessite autre visite");
-        cons3.getTraitement().setConseils("continuer les massages et le palpe roulé, éviter de la pate " +
+        cons10.getTraitement().setResultat("nécessite autre visite");
+        cons10.getTraitement().setConseils("continuer les massages et le palpe roulé, éviter de la pate " +
                 "en le prenant sous le ventre pendant 24-48h, prochaine visite dans 1 Mois");
-        cons3.getTraitement().setValide(true);
-        cons3.getInfosConsult().setNoteDiag(4);
-        cons3.getInfosConsult().setNoteTrait(3);
-        cons3 = consultationManager.saveConsultation(cons3);
+        cons10.getTraitement().setValide(true);
+        cons10.getInfosConsult().setNoteDiag(4);
+        cons10.getInfosConsult().setNoteTrait(3);
+        cons10 = consultationManager.saveConsultation(cons3);
 
         c.add(Calendar.DATE, 25);
 
-        Consultation cons4 = new Consultation();
-        cons4.setDateConsultation(c.getTime());
-        cons4.setAnimal(animal2);
-        cons4.getInfosConsult().setBinome(bin1);
-        cons4.getInfosConsult().setProfesseur(prof1);
-        cons4.setMotif("Visite de suivi");
-        cons4.getDiagnostic().setDouleur("reins, sphère viscérale");
-        cons4.getDiagnostic().setDynamique("bassin décalé à droite," +
+        Consultation cons11 = consultationBuilder(c, animal2, bin1, prof1);
+        cons11.setMotif("Visite de suivi");
+        cons11.getDiagnostic().setDouleur("reins, sphère viscérale");
+        cons11.getDiagnostic().setDynamique("bassin décalé à droite," +
                 "bloc lambaire immobile");
-        cons4.getDiagnostic().setPalpatoire("reins gauche +++, bloc lombaire, tensons des psoas, rein droit");
-        cons4.getDiagnostic().setDiagnosticText("reins tractent l'ensemble de la sphère digestive vers dorsal," +
+        cons11.getDiagnostic().setPalpatoire("reins gauche +++, bloc lombaire, tensons des psoas, rein droit");
+        cons11.getDiagnostic().setDiagnosticText("reins tractent l'ensemble de la sphère digestive vers dorsal," +
                 "rein gauche et glande surrénale gauche plus dense," +
                 "psoas spasmés");
-        cons4.getDiagnostic().setValide(true);
-        cons4.getTraitement().setDetails("viscéral : reins (gche+++) et glandes surrehales," +
+        cons11.getDiagnostic().setValide(true);
+        cons11.getTraitement().setDetails("viscéral : reins (gche+++) et glandes surrehales," +
                 "stretching des muscles psoas," +
                 "réharmonisation de l'axe cranio-sacré") ;
-        cons4.getTraitement().setResultat("nécessite autre visite");
-        cons4.getTraitement().setConseils("continuer les massages et le palper rouler," +
+        cons11.getTraitement().setResultat("nécessite autre visite");
+        cons11.getTraitement().setConseils("continuer les massages et le palper rouler," +
                 "eviter de la porter sous le ventre," +
                 "si possible, faire boire caline pour drainer les reins," +
                 "autre visite pour continuer le travail sur les reins (septembre)");
-        cons4.getTraitement().setValide(true);
-        cons4.getInfosConsult().setNoteDiag(5);
-        cons4.getInfosConsult().setNoteTrait(4);
-        cons4 = consultationManager.saveConsultation(cons4);
+        cons11.getTraitement().setValide(true);
+        cons11.getInfosConsult().setNoteDiag(5);
+        cons11.getInfosConsult().setNoteTrait(4);
+        cons11 = consultationManager.saveConsultation(cons4);
 
         User user1 = new User();
         user1.getContact().setPrenom("ad");

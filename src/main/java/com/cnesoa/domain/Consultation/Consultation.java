@@ -21,7 +21,7 @@ public class Consultation implements Serializable, Comparable<Consultation> {
     private Long id;
 
     //date de la consultation
-    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date dateConsultation;
 
     //type de consultation
