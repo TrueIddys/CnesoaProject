@@ -31,7 +31,6 @@ public class InfosConsult {
 
     //consultation
     @OneToOne
-    @Column(name = "consultation")
     private Consultation consultation;
 
     //note (1 à 5 étoiles) sur le diagnostic
