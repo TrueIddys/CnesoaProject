@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
-public class ProfesseurController {
+public class    ProfesseurController {
 
     //Autowiring of beans
 

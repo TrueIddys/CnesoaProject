@@ -23,10 +23,10 @@
                 <td><label>Spécialité</label></td>
                 <td><label>Matière</label></td>
                 <td><li class="dropdown" style="width: 30px;list-style-type: none;">
-                    <button type="button" class="glyphicon glyphlist glyphicon-menu-down" aria-label="Justify">
+                    <button type="button" class="glyphicon glyphlist glyphicon-cog" aria-label="Justify">
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a th:href="@{'/professeur/edit/' + ${professeur.id}}">
+                    <ul class="dropdown-menu pull-right">
+                        <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/professeur/edit/' + ${professeur.id}}">
                             Modifier</a></li>
                         <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/professeur/delete/' + ${professeur.id}}">
                             Supprimer</a></li>

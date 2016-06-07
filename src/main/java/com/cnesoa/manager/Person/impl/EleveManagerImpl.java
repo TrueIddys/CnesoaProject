@@ -66,7 +66,7 @@ public class EleveManagerImpl implements EleveManager {
         }
         if (eleve.getId() == null)
             eleve.getContact().setPerson(eleve);
-            eleve.setRole(Role.ROLE_ELEVE);
+        eleve.setRole(Role.ROLE_ELEVE);
         return eleveRepository.save(eleve);
     }
 
@@ -126,8 +126,10 @@ public class EleveManagerImpl implements EleveManager {
         float cpt = 0;
         for (Consultation c : consultations){
             if (c.getDateConsultation().before(Date.from(Instant.now()))){
-                moyDiag += c.getInfosConsult().getNoteDiag();
-                cpt++;
+                if (c.getInfosConsult().getNoteDiag() != null) {
+                    moyDiag += c.getInfosConsult().getNoteDiag();
+                    cpt++;
+                }
             }
         }
         if (moyDiag == 0)
@@ -143,8 +145,10 @@ public class EleveManagerImpl implements EleveManager {
         float cpt = 0;
         for (Consultation c : consultations){
             if (c.getDateConsultation().before(Date.from(Instant.now()))){
-                moyTrait += c.getInfosConsult().getNoteTrait();
-                cpt++;
+                if (c.getInfosConsult().getNoteTrait() != null) {
+                    moyTrait += c.getInfosConsult().getNoteTrait();
+                    cpt++;
+                }
             }
         }
         if (moyTrait == 0)

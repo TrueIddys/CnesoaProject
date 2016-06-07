@@ -11,7 +11,7 @@
     <div class="content-wrap">
         <!--/*/ <th:block th:include="fragments/title :: title"></th:block> /*/-->
         <h2 th:text="${eleve.getName()}"></h2>
-        <hr class="horizontal"/>a
+        <hr class="horizontal"/>
         <table class="table centered">
             <tbody>
             <tr>
@@ -24,10 +24,10 @@
                 <td><label>Heures de consultation effectuées cette année</label></td>
                 <td>
                     <li class="dropdown" style="width: 30px;list-style-type: none;">
-                        <button type="button" class="glyphicon glyphlist glyphicon-menu-down" aria-label="Justify">
+                        <button type="button" class="glyphicon glyphlist glyphicon-cog" aria-label="Justify">
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a th:href="@{'/eleve/edit/' + ${eleve.id}}">
+                        <ul class="dropdown-menu pull-right">
+                            <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/eleve/edit/' + ${eleve.id}}">
                                 Modifier</a></li>
                             <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/eleve/delete/' + ${eleve.id}}">
                                 Supprimer</a></li>

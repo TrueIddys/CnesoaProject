@@ -39,10 +39,10 @@
                            th:href="@{'/client/'+ ${animal.client.id}}"
                            data-hover="Propriétaire">Propriétaire</a>
                     </nav></td>
-                    <td><li class="dropdown" style="width: 30px;list-style-type: none;">
-                        <button type="button" class="glyphicon glyphlist glyphicon-menu-down" aria-label="Justify">
+                    <td sec:authorize="hasRole('ROLE_ADMIN')"><li class="dropdown" style="width: 30px;list-style-type: none;">
+                        <button type="button" class="glyphicon glyphlist glyphicon-cog" aria-label="Justify">
                             </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu pull-right">
                             <li><a th:href="@{'/animal/' + ${animal.id}+'/edit'}">Modifier ce profil</a></li>
                             <li><a th:href="@{'/animal/delete/'+${animal.id}}">Supprimer ce profil</a></li>
                             <li><a th:href="@{'/consultations/'+${animal.id}}">Voir les consultations</a></li>

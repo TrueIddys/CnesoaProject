@@ -27,9 +27,9 @@
                     <td th:text="${professeur.contact.tel}">Téléphone</td>
                     <td>
                     <li class="dropdown" style="width: 30px;list-style-type: none;">
-                        <button type="button" class="glyphicon glyphlist glyphicon-menu-down" aria-label="Justify">
+                        <button type="button" class="glyphicon glyphlist glyphicon-cog" aria-label="Justify">
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu pull-right">
                             <li><a th:href="@{'/professeur/' + ${professeur.id}}">Voir
                             </a></li>
                             <li><a th:href="@{'/professeur/edit/' + ${professeur.id}}">Modifier
