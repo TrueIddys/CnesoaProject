@@ -16,7 +16,7 @@ public abstract class Person implements Comparable<Person>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="person_id")
-    private Long id;
+    private Long person_id;
 
     //les informations de contact d'une personne
     @OneToOne(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -24,12 +24,12 @@ public abstract class Person implements Comparable<Person>{
 
     /*____________________*/
 
-    public Long getId() {
-        return id;
+    public Long getPerson_id() {
+        return person_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPerson_id(Long person_id) {
+        this.person_id = person_id;
     }
 
     public Contact getContact() {
@@ -95,8 +95,8 @@ public abstract class Person implements Comparable<Person>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person other = (Person) o;
-        if (this.getId() == null || other.getId() == null) return false;
-        return Objects.equals(this.getId(), other.getId());
+        if (this.getPerson_id() == null || other.getPerson_id() == null) return false;
+        return Objects.equals(this.getPerson_id(), other.getPerson_id());
     }
 
 }
