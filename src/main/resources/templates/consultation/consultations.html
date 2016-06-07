@@ -26,10 +26,13 @@
                 </tr>
                 <tr th:each="consultation : ${consultations}">
                     <td th:text="${consultation.formatDateConsultation()}">Date</td>
-                    <td th:text="${consultation.infosConsult.binome.getName()}">Binôme</td>
-                    <td th:text="${consultation.infosConsult.binome.numBinome}">Numéro du binome</td>
+                    <td th:if="${consultation.infosConsult.binome != null}"
+                        th:text="${consultation.infosConsult.binome.getName()}">Binôme</td>
+                    <td th:if="${consultation.infosConsult.binome != null}"
+                        th:text="${consultation.infosConsult.binome.numBinome}">Numéro du binome</td>
                     <td th:text="${consultation.animal.nom}">Animal</td>
-                    <td th:text="${consultation.infosConsult.professeur.getName()}">Professeur</td>
+                    <td th:if="${consultation.infosConsult.professeur != null}"
+                        th:text="${consultation.infosConsult.professeur.getName()}">Professeur</td>
                     <td th:text="${consultation.animal.client.getName()}">Client</td>
                     <td>
                         <li class="dropdown" style="width: 30px;list-style-type: none;">

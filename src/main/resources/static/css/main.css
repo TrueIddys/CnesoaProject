@@ -53,6 +53,10 @@ body {
     background-size: cover;
 }
 
+.content-wrap {
+    margin-bottom: 100px;
+}
+
 .centered {
     margin-left: auto;
     margin-right: auto;
