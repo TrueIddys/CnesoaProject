@@ -3,7 +3,6 @@ a {
 }
 
 .amenu:hover{
-    /*color: #A94442 !important;*/
     -webkit-transition: all .45s !important;
     transition: all .45s !important;
 }
