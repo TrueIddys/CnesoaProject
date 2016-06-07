@@ -49,8 +49,8 @@
       <file leaf-file-name="consultations.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/consultation/consultations.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2631579" vertical-offset="357" max-vertical-offset="1241">
-              <caret line="26" column="62" selection-start-line="26" selection-start-column="62" selection-end-line="26" selection-end-column="62" />
+            <state vertical-scroll-proportion="0.47368422" vertical-offset="612" max-vertical-offset="1241">
+              <caret line="45" column="71" selection-start-line="45" selection-start-column="71" selection-end-line="45" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -1137,12 +1137,12 @@
       <workItem from="1465214433993" duration="673000" />
       <workItem from="1465283710616" duration="3269000" />
       <workItem from="1465287539006" duration="10133000" />
-      <workItem from="1465302415772" duration="1115000" />
+      <workItem from="1465302415772" duration="1721000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18463000" />
+    <option name="totallyTimeSpent" value="19069000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1638,8 +1638,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/consultation/consultations.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2631579" vertical-offset="357" max-vertical-offset="1241">
-          <caret line="26" column="62" selection-start-line="26" selection-start-column="62" selection-end-line="26" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.47368422" vertical-offset="612" max-vertical-offset="1241">
+          <caret line="45" column="71" selection-start-line="45" selection-start-column="71" selection-end-line="45" selection-end-column="71" />
           <folding />
         </state>
       </provider>
