@@ -38,9 +38,9 @@
                 <td th:text="${client.getFormatCotisation()}">Cotisation</td>
                 <td>
                     <li class="dropdown" style="width: 30px;list-style-type: none;">
-                        <button type="button" class="glyphicon glyphlist glyphicon-menu-down" aria-label="Justify">
+                        <button type="button" class="glyphicon glyphlist glyphicon-cog" aria-label="Justify">
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu pull-right">
                             <li><a th:href="@{'/client/' + ${client.id}}">Voir
                             </a></li>
                             <li><a th:href="@{'/client/edit/' + ${client.id}}">Modifier

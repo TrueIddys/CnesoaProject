@@ -26,21 +26,24 @@
                 </tr>
                 <tr th:each="consultation : ${consultations}">
                     <td th:text="${consultation.formatDateConsultation()}">Date</td>
-                    <td th:text="${consultation.infosConsult.binome.getName()}">Binôme</td>
-                    <td th:text="${consultation.infosConsult.binome.numBinome}">Numéro du binome</td>
+                    <td th:if="${consultation.infosConsult.binome != null}"
+                        th:text="${consultation.infosConsult.binome.getName()}">Binôme</td>
+                    <td th:if="${consultation.infosConsult.binome != null}"
+                        th:text="${consultation.infosConsult.binome.numBinome}">Numéro du binome</td>
                     <td th:text="${consultation.animal.nom}">Animal</td>
-                    <td th:text="${consultation.infosConsult.professeur.getName()}">Professeur</td>
+                    <td th:if="${consultation.infosConsult.professeur != null}"
+                        th:text="${consultation.infosConsult.professeur.getName()}">Professeur</td>
                     <td th:text="${consultation.animal.client.getName()}">Client</td>
                     <td>
                         <li class="dropdown" style="width: 30px;list-style-type: none;">
-                            <button type="button" class="glyphicon glyphlist glyphicon-menu-down" aria-label="Justify">
+                            <button type="button" class="glyphicon glyphlist glyphicon-cog" aria-label="Justify">
                             </button>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu pull-right">
                                 <li><a th:href="@{'/consultation/' + ${consultation.id}}">Voir
                                 </a></li>
                                 <li><a th:href="@{'/consultation/edit/' + ${consultation.id}}">Modifier
                                 </a></li>
-                                <li><a th:href="@{'/consultation/edit/' + ${consultation.id}}">Supprimer
+                                <li><a th:href="@{'/consultation/delete/' + ${consultation.id}}">Supprimer
                                 </a></li>
                             </ul>
                         </li>
