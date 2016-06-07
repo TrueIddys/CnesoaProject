@@ -18,6 +18,7 @@ import java.util.List;
  */
 
 @Entity
+@Table(name = "client")
 @DiscriminatorValue("Client")
 public class Client extends Person implements Serializable {
 

@@ -8,6 +8,7 @@ import javax.persistence.*;
  * Created by Maxime on 15/04/2016.
  */
 @Entity
+@Table(name = "diagnostic")
 @Indexed
 public class Diagnostic {
 

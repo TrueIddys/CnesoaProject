@@ -9,6 +9,7 @@ import java.util.Objects;
  * Created by Maxime on 05/04/2016.
  */
 @Entity
+@Table(name = "person")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person implements Comparable<Person>{
 

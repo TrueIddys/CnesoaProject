@@ -13,6 +13,7 @@ import java.util.Date;
  */
 
 @Entity
+@Table(name = "consultation")
 public class Consultation implements Serializable, Comparable<Consultation> {
 
     @Id

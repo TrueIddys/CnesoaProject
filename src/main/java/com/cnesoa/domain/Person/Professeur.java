@@ -16,6 +16,7 @@ import java.util.Map;
  */
 
 @Entity
+@Table(name = "professeur")
 @DiscriminatorValue("Professeur")
 public class Professeur extends User implements Serializable {
 

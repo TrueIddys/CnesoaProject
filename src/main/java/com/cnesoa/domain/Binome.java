@@ -12,6 +12,7 @@ import java.util.List;
  * Created by Maxime on 13/04/2016.
  */
 @Entity
+@Table(name = "binome")
 public class Binome implements Serializable, Comparable<Binome>{
 
     @Id

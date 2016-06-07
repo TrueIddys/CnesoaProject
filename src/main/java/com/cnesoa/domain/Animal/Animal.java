@@ -20,6 +20,7 @@ import java.util.Objects;
  */
 
 @Entity
+@Table(name = "animal")
 @Indexed
 public class Animal implements Serializable, Comparable<Animal> {
 

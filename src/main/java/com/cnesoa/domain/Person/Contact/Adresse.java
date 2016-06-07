@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
  */
 
 @Entity
+@Table(name = "adresse")
 @Indexed
 public class Adresse {
 

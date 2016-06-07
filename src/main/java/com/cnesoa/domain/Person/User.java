@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @Entity
+@Table(name = "user")
 public class User extends Person{
 
     //nom d'utilisateur

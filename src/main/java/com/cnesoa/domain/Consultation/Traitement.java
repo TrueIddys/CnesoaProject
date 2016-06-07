@@ -14,6 +14,7 @@ import java.util.Map;
  */
 
 @Entity
+@Table(name = "traitement")
 @Indexed
 public class Traitement {
 

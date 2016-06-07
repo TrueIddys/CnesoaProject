@@ -10,6 +10,7 @@ import javax.persistence.*;
  */
 
 @Entity
+@Table(name = "infosconsult")
 public class InfosConsult {
 
     @Id
@@ -30,6 +31,7 @@ public class InfosConsult {
 
     //consultation
     @OneToOne
+    @Column(name = "consultation")
     private Consultation consultation;
 
     //note (1 à 5 étoiles) sur le diagnostic

@@ -2,10 +2,7 @@ package com.cnesoa.domain.Person;
 
 import com.cnesoa.domain.Binome;
 
-import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.List;
  */
 
 @Entity
+@Table(name = "eleve")
 @DiscriminatorValue("Eleve")
 public class Eleve extends User implements Serializable {
 
