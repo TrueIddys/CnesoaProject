@@ -6122,8 +6122,32 @@ DayGrid.mixin({
 				(htmlEscape(event.title || '') || '&nbsp;') + // we always want one line of height
 			'</span>';
 
-		//TODO metre un point poru dire que c'est le jour où il ya des consultations
-		return '';
+		//TODO metre un point pour dire que c'est le jour où il ya des consultations
+		return '<a class="' + classes.join(' ') + '"' +
+			(event.url ?
+			' href="' + htmlEscape(event.url) + '"' :
+				''
+			) +
+			(skinCss ?
+			' style="' + skinCss + '"' :
+				''
+			) +
+			'>' +
+			'<div class="fc-content">' +
+			(this.isRTL ?
+			titleHtml + ' ' + timeHtml : // put a natural space in between
+			timeHtml + ' ' + titleHtml   //
+			) +
+			'</div>' +
+			(isResizableFromStart ?
+				'<div class="fc-resizer fc-start-resizer" />' :
+				''
+			) +
+			(isResizableFromEnd ?
+				'<div class="fc-resizer fc-end-resizer" />' :
+				''
+			) +
+			'</a>';
 	},
 
 
@@ -12160,7 +12184,7 @@ var AgendaView = FC.AgendaView = View.extend({
 
 		this.scroller.render();
 		var timeGridWrapEl = this.scroller.el.addClass('fc-time-grid-container');
-		var timeGridEl = $('<div class="fc-time-grid" style="width: 120%"/>').appendTo(timeGridWrapEl);
+		var timeGridEl = $('<div class="fc-time-grid"/>').appendTo(timeGridWrapEl);
 		this.el.find('.fc-body > tr > td').append(timeGridWrapEl);
 
 		this.timeGrid.setElement(timeGridEl);
