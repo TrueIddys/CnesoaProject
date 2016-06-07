@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 public class Adresse {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String numero;

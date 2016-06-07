@@ -24,7 +24,7 @@ import java.util.Objects;
 public class Animal implements Serializable, Comparable<Animal> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "animal_id")
     private Long id;
 

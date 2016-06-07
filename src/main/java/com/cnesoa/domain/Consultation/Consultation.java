@@ -16,7 +16,7 @@ import java.util.Date;
 public class Consultation implements Serializable, Comparable<Consultation> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "consultation_id")
     private Long id;
 

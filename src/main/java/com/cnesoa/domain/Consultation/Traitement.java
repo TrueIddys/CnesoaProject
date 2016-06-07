@@ -18,7 +18,7 @@ import java.util.Map;
 public class Traitement {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     //liste des différents traitements possibles

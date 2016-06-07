@@ -13,7 +13,7 @@ import java.util.Map;
 public class FicheMedicale {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     //origine de l'animal
