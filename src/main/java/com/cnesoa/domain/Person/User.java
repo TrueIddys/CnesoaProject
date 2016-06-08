@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @Entity
-@Table(name = "user")
+@Table(name = "utilisateur")
 public class User extends Person{
 
     //nom d'utilisateur

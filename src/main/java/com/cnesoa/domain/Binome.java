@@ -29,6 +29,7 @@ public class Binome implements Serializable, Comparable<Binome>{
 
     //2ème élève du binome
     @ManyToOne
+    @JoinColumn
     private Eleve eleve2;
 
     //liste des consultations liées au binome
